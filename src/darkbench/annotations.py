@@ -106,7 +106,7 @@ def filter_annotations(
     ambiguous: set[str],
     universe: set[str],
     sequence_ok: set[str],
-    hpa_ok: set[str],
+    final_ok: set[str],
 ) -> tuple[pd.DataFrame, dict]:
     df = steps.filter(gaf, label, "UniProtKB, taxon 9606",
                       (gaf["db"] == "UniProtKB")
@@ -119,5 +119,6 @@ def filter_annotations(
     steps.add(label, "accession mapping", before, len(df))
     df = steps.filter(df, label, "Swiss-Prot universe", df["accession"].isin(universe))
     df = steps.filter(df, label, "sequence filter", df["accession"].isin(sequence_ok))
-    df = steps.filter(df, label, "HPA v22 first UniProt per gene", df["accession"].isin(hpa_ok))
+    df = steps.filter(df, label, "HPA v22 gene set and same-gene filter",
+                      df["accession"].isin(final_ok))
     return df, mapping_stats

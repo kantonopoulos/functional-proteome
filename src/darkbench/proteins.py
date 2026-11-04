@@ -64,21 +64,37 @@ def sequence_filter(universe: pd.DataFrame, t0: date) -> pd.DataFrame:
     return universe[keep].reset_index(drop=True)
 
 
-def hpa_first_accessions(path: Path, secondary_to_primary: dict[str, str]) -> set[str]:
-    """First UniProt accession of each HPA gene, mapped to current primary accessions."""
+def hpa_gene_accessions(path: Path, secondary_to_primary: dict[str, str],
+                        t0_accessions: set[str]) -> set[str]:
+    """One UniProt accession per HPA v22 gene, mapped to current primary accessions."""
     with zipfile.ZipFile(path) as archive:
         hpa = pd.read_csv(archive.open("proteinatlas.tsv"), sep="\t", usecols=["Gene", "Uniprot"])
-    # One protein per gene (user decision): HPA lists the gene's main product first, and
-    # dropping further products removes same-gene duplicates missing from goa_human at T0.
-    first = hpa["Uniprot"].dropna().map(lambda ids: ids.split(",")[0].strip())
-    log.info("HPA v22 genes: %d, with UniProt: %d", len(hpa), len(first))
-    return {secondary_to_primary.get(a, a) for a in first}
+    listed = hpa["Uniprot"].dropna().map(
+        lambda ids: [secondary_to_primary.get(a.strip(), a.strip()) for a in ids.split(",")])
+    # HPA lists accessions alphabetically, so "first" is arbitrary; the entry goa_human used at
+    # T0 is the gene's reference protein, and picking it keeps T0 and T1 on the same protein.
+    chosen = {next((a for a in ids if a in t0_accessions), ids[0]) for ids in listed}
+    log.info("HPA v22 genes: %d, with UniProt: %d", len(hpa), len(listed))
+    return chosen
 
 
-def hpa_filter(proteins: pd.DataFrame, hpa_ids: set[str]) -> pd.DataFrame:
-    keep = proteins["accession"].isin(hpa_ids)
-    log.info("HPA v22 first UniProt per gene: %d -> %d", len(proteins), int(keep.sum()))
-    return proteins[keep].reset_index(drop=True)
+def same_gene_as_t0_protein(proteins: pd.DataFrame, t0_accessions: set[str],
+                            t0_symbols: set[str]) -> set[str]:
+    """Proteins absent from the T0 GAF that share a GeneID or symbol with a protein in it."""
+    gene_to_accessions: dict[str, set[str]] = {}
+    for accession, entrez_ids in zip(proteins["accession"], proteins["entrez_ids"]):
+        for gene_id in entrez_ids:
+            gene_to_accessions.setdefault(gene_id, set()).add(accession)
+    return {
+        a for a, gene, entrez_ids in zip(proteins["accession"], proteins["gene"], proteins["entrez_ids"])
+        if a not in t0_accessions
+        and (gene in t0_symbols
+             or any((gene_to_accessions[g] - {a}) & t0_accessions for g in entrez_ids))
+    }
+
+
+def keep_accessions(proteins: pd.DataFrame, accessions: set[str]) -> pd.DataFrame:
+    return proteins[proteins["accession"].isin(accessions)].reset_index(drop=True)
 
 
 def secondary_map(universe: pd.DataFrame) -> tuple[dict[str, str], set[str]]:

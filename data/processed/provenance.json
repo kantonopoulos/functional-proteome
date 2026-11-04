@@ -28,6 +28,13 @@
       "md5": "1208619d97a7bba65757c7c1fa4738d1",
       "url": "https://release.geneontology.org/2023-01-01/ontology/go-basic.obo"
     },
+    "hpa_v22": {
+      "bytes": 5151301,
+      "download_date": "2026-11-04",
+      "file": "proteinatlas_v22.tsv.zip",
+      "md5": "89601316ffe9c0972623f96d6372d5ac",
+      "url": "https://v22.proteinatlas.org/download/proteinatlas.tsv.zip"
+    },
     "pharos_tdl": {
       "bytes": 386943,
       "download_date": "2026-11-04",
@@ -42,13 +49,6 @@
       "file": "uniprot_sprot_human.txt.gz",
       "md5": "cdfe580d07365aeb32dc4f2bec06bc6d",
       "url": "https://rest.uniprot.org/uniprotkb/search?compressed=true&format=txt&size=500&query=%28organism_id%3A9606%29+AND+%28reviewed%3Atrue%29"
-    },
-    "hpa_v22": {
-      "file": "proteinatlas_v22.tsv.zip",
-      "url": "https://v22.proteinatlas.org/download/proteinatlas.tsv.zip",
-      "md5": "89601316ffe9c0972623f96d6372d5ac",
-      "bytes": 5151301,
-      "download_date": "2026-11-04"
     }
   },
   "gaf_headers": {
