@@ -14645,7 +14645,7 @@ P47972	NPTX2	4885	35	intermediate	Tbio	Pharos dbVersion pharos319 (current, post
 P55808	XG	7499	10	intermediate	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	True
 P56277	CMC4	100272147	6	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	True
 P57723	PCBP4	57060	12	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	False
-P58557	YBEY	54059	6	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	False	True
+P58557	YBEY	54059	6	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	False	False
 P59797	SELENOV	348303	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P59826	BPIFB3	359710	7	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	True
 P60153	RNASE9	390443	7	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False

@@ -63,7 +63,12 @@ IG_TR_SEGMENT_PATTERN = r"^(IG[HKL][VDJC]|TR[ABDG][VDJC])"
 PROTEIN_BINDING = "GO:0005515"
 # HPA immunofluorescence curated into GO. Removed from both snapshots because it overlaps
 # with T2 and would leak into any model that uses HPA image features.
-EXCLUDED_REFERENCES = ["GO_REF:0000052"]
+# HPA antibody-profiling papers cited by UniProt carry the same data under a PMID.
+EXCLUDED_REFERENCES = [
+    "GO_REF:0000052",  # HPA immunofluorescence
+    "PMID:31429579",  # HPA testis antibody-based proteomics (Pineau et al. 2019)
+    "PMID:22042635",  # HPA antibody-based profiling of chromosome 21 (2012)
+]
 ROOT_TERMS = {"GO:0003674": "MF", "GO:0008150": "BP", "GO:0005575": "CC"}
 NAMESPACES = {
     "molecular_function": "MF",

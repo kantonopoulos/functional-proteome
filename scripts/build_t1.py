@@ -93,6 +93,27 @@ def pipeline_difference_section(delta: pd.DataFrame, t0: pd.DataFrame, t0_goa: d
     )
 
 
+def nk_origin(t0_raw: pd.DataFrame, sec_map: dict[str, str], nk: set[str],
+              dark: set[str]) -> pd.DataFrame:
+    """Why each NK protein had no T0 experimental annotation after filtering."""
+    df = t0_raw[(t0_raw["db"] == "UniProtKB")
+                & t0_raw["evidence"].isin(config.evidence_codes())
+                & ~t0_raw["qualifier"].map(annotations.is_negated)]
+    df = df.assign(accession=df["db_object_id"].map(proteins.canonical_accession)
+                   .map(lambda a: sec_map.get(a, a)))
+    df = df[df["accession"].isin(nk)]
+    excluded_ref = df["reference"].map(
+        lambda r: bool(set(r.split("|")) & set(config.EXCLUDED_REFERENCES)))
+    reason = pd.Series("other (obsolete or root term only)", index=df.index)
+    reason[df["go_id"].isin(config.UNINFORMATIVE_TERMS)] = "protein binding / binding"
+    reason[excluded_ref] = "HPA-derived"
+    reasons = reason.groupby(df["accession"]).apply(lambda r: " + ".join(sorted(set(r))))
+    origin = pd.Series({a: reasons.get(a, "no experimental annotation") for a in nk})
+    table = pd.DataFrame({"origin": origin, "dark": origin.index.isin(dark)})
+    return (table.groupby("origin").agg(nk_proteins=("dark", "size"), dark=("dark", "sum"))
+            .sort_values("nk_proteins", ascending=False).reset_index())
+
+
 def summarise(gt: pd.DataFrame, strata: pd.DataFrame) -> pd.DataFrame:
     per_protein = gt[["accession", "namespace", "knowledge_type"]].drop_duplicates()
     per_protein = per_protein.merge(strata, on="accession", how="left")
@@ -245,6 +266,9 @@ def main() -> None:
     table["tdl_source"] = manifest["pharos_tdl"]["release"]
     table = pd.concat([table, ground_truth.has_exp_t0(t0_prop, table["accession"])], axis=1)
 
+    nk_table = nk_origin(t0_raw, sec_map, set(gt.loc[gt["knowledge_type"] == "NK", "accession"]),
+                         set(table.loc[table["stratum"] == "dark", "accession"]))
+    print(nk_table.to_string(index=False))
     spot = spot_check(table)
     print(spot.to_string(index=False))
     checks.add("Spot-check genes found", set(config.SPOT_CHECK_GENES) <= set(spot["gene"]),
@@ -329,6 +353,8 @@ def main() -> None:
     report = render_report(go_no_go, sources, steps.frame(), term_mapping, summary,
                            checks.frame(), spot, notes)
     report += pipeline_section
+    report += ("\n## Origin of NK proteins (only T0 experimental annotations)\n\n"
+               + markdown_table(nk_table) + "\n")
     report += ("\n## Proteins without a GeneID mapping (no stratum)\n\n<details><summary>"
                f"{len(unmapped)} proteins</summary>\n\n"
                + ", ".join(f"{a} ({g})" for a, g in zip(unmapped["accession"], unmapped["gene"].fillna("-")))

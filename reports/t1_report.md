@@ -1,6 +1,6 @@
 # T1 GO label sets: build report
 
-> **GO: 590 unique dark proteins in NK+LK in any namespace (threshold 200); 872 protein-namespace pairs; 521 unique in the strict subset.**
+> **GO: 577 unique dark proteins in NK+LK in any namespace (threshold 200); 858 protein-namespace pairs; 508 unique in the strict subset.**
 
 ## Source versions and dates
 
@@ -24,7 +24,7 @@
 - Ig/TR V/D/J/C gene segments are excluded: they are not proteins with their own function (user decision).
 - Ground-truth pairs already curated at T0 as TAS/NAS/IC (after propagation) are removed: an evidence upgrade is not a discovery. Pairs known only as IEA/ISS are kept (user decision).
 - `strict` column in ground_truth_t1.tsv: pair supported by a T1 row dated on or after 2022-11-17. Report results on the full set and the strict subset (sensitivity analysis; user decision).
-- Annotations with references ['GO_REF:0000052'] (HPA immunofluorescence) are removed from T0 and T1: they overlap with T2 and leak into models using HPA image features.
+- Annotations with references ['GO_REF:0000052', 'PMID:31429579', 'PMID:22042635'] (HPA immunofluorescence) are removed from T0 and T1: they overlap with T2 and leak into models using HPA image features.
 - GeneIDs missing from UniProt were recovered for 36 proteins via HPA Ensembl ID and NCBI gene2ensembl.
 - Proteins with several GeneIDs take the max paper count over their GeneIDs (user decision).
 - Secondary accessions that map to several current entries are dropped (user decision): T0 [], T1 [].
@@ -45,27 +45,27 @@
 | T0 | evidence codes | 626136 | 337902 | 288234 |
 | T0 | NOT qualifier | 337902 | 336925 | 977 |
 | T0 | protein binding | 336925 | 130643 | 206282 |
-| T0 | HPA-derived references | 130643 | 120682 | 9961 |
-| T0 | accession mapping | 120682 | 120682 | 0 |
-| T0 | Swiss-Prot universe | 120682 | 120681 | 1 |
-| T0 | sequence filter | 120681 | 119061 | 1620 |
-| T0 | protein universe (HPA v22, in T0 GAF, not Ig/TR) | 119061 | 118301 | 760 |
+| T0 | HPA-derived references | 130643 | 120679 | 9964 |
+| T0 | accession mapping | 120679 | 120679 | 0 |
+| T0 | Swiss-Prot universe | 120679 | 120678 | 1 |
+| T0 | sequence filter | 120678 | 119058 | 1620 |
+| T0 | protein universe (HPA v22, in T0 GAF, not Ig/TR) | 119058 | 118298 | 760 |
 | T1 | UniProtKB, taxon 9606 | 910476 | 862694 | 47782 |
 | T1 | evidence codes | 862694 | 448915 | 413779 |
 | T1 | NOT qualifier | 448915 | 447749 | 1166 |
 | T1 | protein binding | 447749 | 169630 | 278119 |
-| T1 | HPA-derived references | 169630 | 161262 | 8368 |
-| T1 | accession mapping | 161262 | 161262 | 0 |
-| T1 | Swiss-Prot universe | 161262 | 161262 | 0 |
-| T1 | sequence filter | 161262 | 158899 | 2363 |
-| T1 | protein universe (HPA v22, in T0 GAF, not Ig/TR) | 158899 | 157491 | 1408 |
-| T0 | GO term in T0 ontology (after alt_id/obsolete mapping) | 118301 | 118295 | 6 |
-| T0 | propagated (protein, term) pairs, roots and binding terms removed | 89533 | 665085 | -575552 |
-| T1 | GO term in T0 ontology (after alt_id/obsolete mapping) | 157491 | 156139 | 1352 |
-| T1 | propagated (protein, term) pairs, roots and binding terms removed | 104254 | 732111 | -627857 |
-| ground truth | T1 propagated pairs -> new at T1 | 732111 | 120662 | 611449 |
-| ground truth | not curated at T0 as TAS/NAS/IC (propagated) | 120662 | 98132 | 22530 |
-| ground truth | strict subset (annotation date >= 2022-11-17) | 98132 | 83802 | 14330 |
+| T1 | HPA-derived references | 169630 | 161204 | 8426 |
+| T1 | accession mapping | 161204 | 161204 | 0 |
+| T1 | Swiss-Prot universe | 161204 | 161204 | 0 |
+| T1 | sequence filter | 161204 | 158841 | 2363 |
+| T1 | protein universe (HPA v22, in T0 GAF, not Ig/TR) | 158841 | 157444 | 1397 |
+| T0 | GO term in T0 ontology (after alt_id/obsolete mapping) | 118298 | 118292 | 6 |
+| T0 | propagated (protein, term) pairs, roots and binding terms removed | 89530 | 665071 | -575541 |
+| T1 | GO term in T0 ontology (after alt_id/obsolete mapping) | 157444 | 156092 | 1352 |
+| T1 | propagated (protein, term) pairs, roots and binding terms removed | 104216 | 731907 | -627691 |
+| ground truth | T1 propagated pairs -> new at T1 | 731907 | 120472 | 611435 |
+| ground truth | not curated at T0 as TAS/NAS/IC (propagated) | 120472 | 97946 | 22526 |
+| ground truth | strict subset (annotation date >= 2022-11-17) | 97946 | 83616 | 14330 |
 | gene2pubmed | taxon 9606, distinct links | 3348186 | 3348186 | 0 |
 | gene2pubmed | PMIDs with <= 100 human genes | 3348186 | 2521108 | 827078 |
 | gene2pubmed | PMID <= 36585753 | 2521108 | 2300403 | 220705 |
@@ -74,11 +74,11 @@
 
 | snapshot | status | rows | terms |
 |---|---|---|---|
-| T0 | current | 118067 | 12367 |
+| T0 | current | 118064 | 12367 |
 | T0 | obsolete_replaced | 228 | 4 |
 | T0 | obsolete_unmapped | 6 | 3 |
 | T1 | absent | 1328 | 305 |
-| T1 | current | 156136 | 12686 |
+| T1 | current | 156089 | 12686 |
 | T1 | obsolete_replaced | 3 | 2 |
 | T1 | obsolete_unmapped | 24 | 4 |
 
@@ -104,15 +104,15 @@
 | BP | PK | dark | 141 | 127 |
 | BP | PK | intermediate | 1199 | 1074 |
 | BP | PK | well-studied | 1363 | 1219 |
-| CC | LK | dark | 74 | 58 |
+| CC | LK | dark | 72 | 56 |
 | CC | LK | intermediate | 329 | 281 |
 | CC | LK | well-studied | 162 | 146 |
-| CC | NK | dark | 313 | 273 |
-| CC | NK | intermediate | 382 | 335 |
+| CC | NK | dark | 301 | 261 |
+| CC | NK | intermediate | 377 | 330 |
 | CC | NK | well-studied | 55 | 50 |
 | CC | PK | dark | 237 | 186 |
-| CC | PK | intermediate | 1249 | 1082 |
-| CC | PK | well-studied | 860 | 785 |
+| CC | PK | intermediate | 1245 | 1078 |
+| CC | PK | well-studied | 858 | 783 |
 
 ## Checks
 
@@ -131,17 +131,17 @@
 | T0 GAF 2.2 rows have 17 columns | PASS | 626136 rows read, 0 malformed |
 | T1 GAF 2.2 rows have 17 columns | PASS | 910476 rows read, 0 malformed |
 | One protein per HPA gene | PASS | 18221 proteins |
-| T0 retained rows are taxon 9606 and UniProtKB | PASS | 118301 rows |
-| T1 retained rows are taxon 9606 and UniProtKB | PASS | 157491 rows |
+| T0 retained rows are taxon 9606 and UniProtKB | PASS | 118298 rows |
+| T1 retained rows are taxon 9606 and UniProtKB | PASS | 157444 rows |
 | T0 propagated sets closed under parents (all 12145 proteins) | PASS | 0 missing parent links |
-| T1 propagated sets closed under parents (all 13347 proteins) | PASS | 0 missing parent links |
+| T1 propagated sets closed under parents (all 13331 proteins) | PASS | 0 missing parent links |
 | Report mapped obsolete / alt_id / dropped T1 terms | PASS | T0 obsolete_replaced: 228 rows, 4 terms; T0 obsolete_unmapped: 6 rows, 3 terms; T1 absent: 1328 rows, 305 terms; T1 obsolete_replaced: 3 rows, 2 terms; T1 obsolete_unmapped: 24 rows, 4 terms |
 | No ground-truth term existed at T0 (after propagation) | PASS | 0 overlapping |
 | NK/LK/PK mutually exclusive per protein and namespace | PASS | 0 conflicts |
 | No root terms in ground truth | PASS | 0 root rows |
 | No protein binding / binding in T0 annotations or ground truth | PASS | 0 rows |
 | No empty ground-truth sets | PASS | 0 empty |
-| No NK protein is absent from the T0 GAF (scope check) | PASS | 0 of 1120 NK proteins absent |
+| No NK protein is absent from the T0 GAF (scope check) | PASS | 0 of 1104 NK proteins absent |
 | PMID boundary entry date on or before 2022-12-31 | PASS | PMID 36585753, Entrez date 2022/12/30 23:53 |
 | Proteins without GeneID get no stratum | PASS | 25 of 18221 (0.1%) unmapped |
 | Spot-check genes found | PASS | TP53, BRCA1, LYSET |
@@ -171,17 +171,17 @@
 
 ## T0/T1 pipeline-difference checks
 
-- Delta rows (direct T1 rows not known at T0): 27858.
+- Delta rows (direct T1 rows not known at T0): 27824.
 - Delta rows with annotation date before the T0 GOA release (2022-11-17): 4294 (15.4%). By year: {2003: 1, 2004: 1, 2005: 10, 2006: 104, 2007: 54, 2008: 90, 2009: 170, 2010: 80, 2011: 193, 2012: 165, 2013: 128, 2014: 293, 2015: 135, 2016: 149, 2017: 556, 2018: 141, 2019: 194, 2020: 398, 2021: 311, 2022: 1121}.
 - Sources present only in the delta, not in T0: ['LncRNAWiki', 'UOS_MCB'].
 
 | assigned_by | T0 share | delta share |
 |---|---|---|
-| UniProt | 0.6244 | 0.7784 |
-| ComplexPortal | 0.0319 | 0.0664 |
-| BHF-UCL | 0.1361 | 0.0508 |
+| UniProt | 0.6244 | 0.7782 |
+| ComplexPortal | 0.0319 | 0.0665 |
+| BHF-UCL | 0.1361 | 0.0509 |
 | MGI | 0.0417 | 0.0188 |
-| FlyBase | 0.0081 | 0.0174 |
+| FlyBase | 0.0081 | 0.0175 |
 | ARUK-UCL | 0.0408 | 0.0173 |
 | DisProt | 0.0036 | 0.0085 |
 | IntAct | 0.0203 | 0.0083 |
@@ -192,6 +192,16 @@
 | SynGO | 0.0039 | 0.0044 |
 | HGNC-UCL | 0.0124 | 0.0026 |
 | CAFA | 0.0172 | 0.0011 |
+
+## Origin of NK proteins (only T0 experimental annotations)
+
+| origin | nk_proteins | dark |
+|---|---|---|
+| protein binding / binding | 455 | 173 |
+| no experimental annotation | 401 | 171 |
+| HPA-derived + protein binding / binding | 160 | 44 |
+| HPA-derived | 87 | 22 |
+| other (obsolete or root term only) + protein binding / binding | 1 | 0 |
 
 ## Proteins without a GeneID mapping (no stratum)
 

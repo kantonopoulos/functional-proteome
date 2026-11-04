@@ -13,10 +13,10 @@ Scope: the T0 knowledge snapshot, the T1 ground truth and the study-level strata
 | T0 | GO ontology 2023-01-01; GOA human generated 2022-11-17 |
 | T1 | GOA human generated 2026-07-28 (GO release 2026-08-05) |
 | Protein universe | 18,221 reviewed human proteins |
-| T0 training annotations (propagated) | 665,085 (protein, term) pairs on 12,145 proteins |
-| Ground truth (propagated, new at T1) | 98,132 rows on 6,633 proteins; 83,802 rows in the strict subset |
+| T0 training annotations (propagated) | 665,071 (protein, term) pairs on 12,145 proteins |
+| Ground truth (propagated, new at T1) | 97,946 rows on 6,609 proteins; 83,616 rows in the strict subset |
 | Strata | 5,565 dark, 9,003 intermediate, 3,628 well-studied, 25 unassigned |
-| Go/no-go | **GO**: 590 unique dark proteins in NK+LK (threshold 200); 521 in the strict subset |
+| Go/no-go | **GO**: 577 unique dark proteins in NK+LK (threshold 200); 508 in the strict subset |
 | Checks | 27 PASS, 0 FAIL, 1 ACCEPTED (T0 GOA lag of 45 days, accepted by the user) |
 | Tests | 5 pytest tests pass |
 
@@ -72,7 +72,7 @@ Every raw file is cached in `data/raw/` and never downloaded again. Its URL, md5
 
 **Choosing one entry per HPA gene.** HPA lists a gene's UniProt accessions in alphabetical order, so the first one listed is arbitrary. For example, for AKAP7 it lists O43687 first, while the T0 file has Q9P0M2. Taking the first entry would put a protein in the universe whose T0 annotations sit on a different entry, so it would look NK. The rule is therefore: keep the listed accession that appears in the T0 GAF; if none does, keep the first one listed. HPA accessions are mapped to current primary accessions first.
 
-**How these filters fixed the scope problem.** The first run found 68 of 1,213 NK proteins missing from the T0 file altogether. Many were second products of a gene whose main product is in `goa_human`, such as CALCA P06881 (T0 has P01258) and MOCS2 O96033 (T0 has O96007). The HPA filter, the preference for the T0 entry and the T0-presence filter remove all such cases. Final scope check: 0 of 1,120 NK proteins are absent from the T0 file.
+**How these filters fixed the scope problem.** The first run found 68 of 1,213 NK proteins missing from the T0 file altogether. Many were second products of a gene whose main product is in `goa_human`, such as CALCA P06881 (T0 has P01258) and MOCS2 O96033 (T0 has O96007). The HPA filter, the preference for the T0 entry and the T0-presence filter remove all such cases. Final scope check: 0 of 1,104 NK proteins are absent from the T0 file.
 
 ---
 
@@ -92,19 +92,23 @@ Every raw file is cached in `data/raw/` and never downloaded again. Its URL, md5
 | Evidence in {EXP, IDA, IPI, IMP, IGI, IEP} | → 337,902 | → 448,915 | As specified. The codes are a config list, and the high-throughput codes are off (`INCLUDE_HTP = False`). |
 | Drop NOT | → 336,925 | → 447,749 | As specified. |
 | Drop GO:0005515 (protein binding) | → 130,643 | → 169,630 | As specified: uninformative, and it inflates MF. It also comes back through propagation (Section 6.4). |
-| Drop HPA-derived references (`GO_REF:0000052`) | → 120,682 | → 161,262 | User decision; see 5.3. |
-| Accession mapping | → 120,682 | → 161,262 | Isoform IDs collapse to the canonical accession, and secondary accessions map to current primaries. Both files already use canonical, current IDs in column 2: 0 isoform rows and 0 secondary rows needed mapping. Secondary accessions that map to more than one current entry (demerged entries) are dropped by user decision; none remained after the earlier filters. |
-| In the Swiss-Prot universe | → 120,681 | → 161,262 | |
-| Sequence filter | → 119,061 | → 158,899 | |
-| Final protein universe (Section 4) | → 118,301 | → 157,491 | |
+| Drop HPA-derived references | → 120,679 | → 161,204 | User decision; see 5.3. |
+| Accession mapping | → 120,679 | → 161,204 | Isoform IDs collapse to the canonical accession, and secondary accessions map to current primaries. Both files already use canonical, current IDs in column 2: 0 isoform rows and 0 secondary rows needed mapping. Secondary accessions that map to more than one current entry (demerged entries) are dropped by user decision; none remained after the earlier filters. |
+| In the Swiss-Prot universe | → 120,678 | → 161,204 | |
+| Sequence filter | → 119,058 | → 158,841 | |
+| Final protein universe (Section 4) | → 118,298 | → 157,444 | |
 
 **Check:** every retained row is taxon 9606 and UniProtKB, in both files. PASS.
 
-### 5.3 HPA-derived annotations (`GO_REF:0000052`)
+### 5.3 HPA-derived annotations
 
 UniProt curates HPA immunofluorescence results into GO as IDA cellular-component annotations. Before removal, 110 of the 405 CC dark NK proteins (27%) were supported **only** by such rows. Another 20 CC LK and 72 CC PK dark proteins were HPA-only, and none in MF or BP. Leaving these rows in would mean that:
 - the CC task partly measures "predict HPA localization", which overlaps with T2;
 - the ground truth leaks into any model that uses HPA image features.
+
+**Other routes for HPA data.** HPA results can also reach GO when UniProt cites an HPA paper by PMID. To check, I took 3,305 PMIDs from PubMed matching `"Lundberg E"[Author] OR "Uhlen M"[Author] OR "Human Protein Atlas"[Title/Abstract]` and intersected them with the PMIDs cited by UniProt-assigned CC IDA rows. Only 164 of 21,372 such rows at T0, and 224 of 27,084 at T1, cite one of these papers. The flagship subcellular atlas paper (Thul et al. 2017) is not cited at all; HPA cell-atlas data comes in through `GO_REF:0000052`. Only one paper contributes in a meaningful way: **PMID:31429579** (Pineau et al. 2019, HPA's antibody-based testis study), with 55 rows on 49 proteins, all new at T1. Before it was removed, it was the second most-cited PMID among CC dark NK rows. It is excluded, together with **PMID:22042635** (HPA's antibody-based profiling of chromosome 21; 3 rows), which carries the same kind of data. PMID:21399614 (a 2011 centrosome proteomics study that used HPA antibodies; 152 rows) is kept. It is not an HPA atlas paper, and its rows are the same at T0 and T1, so it adds nothing to the ground truth.
+
+Final exclusion list (`EXCLUDED_REFERENCES`): `GO_REF:0000052`, `PMID:31429579`, `PMID:22042635`. It removes 9,964 T0 rows and 8,426 T1 rows.
 
 **Why remove them from both snapshots.** Removing them from T1 only would be inconsistent: HPA localizations would still count as knowledge at T0, but no longer as discoveries at T1. With both removed, the benchmark consistently treats HPA localization as outside the knowledge it measures. One consequence is that a protein whose only T0 knowledge was an HPA localization now counts as NK.
 
@@ -126,10 +130,10 @@ Each GO ID in an annotation is mapped onto the T0 ontology in this order:
 
 | Snapshot | Status | Rows | Distinct terms |
 |---|---|---|---|
-| T0 | current | 118,067 | 12,367 |
+| T0 | current | 118,064 | 12,367 |
 | T0 | obsolete, replaced | 228 | 4 |
 | T0 | obsolete, dropped | 6 | 3 |
-| T1 | current | 156,136 | 12,686 |
+| T1 | current | 156,089 | 12,686 |
 | T1 | obsolete, replaced | 3 | 2 |
 | T1 | obsolete, dropped | 24 | 4 |
 | T1 | **not in T0 ontology, dropped** | **1,328** | **305** |
@@ -138,7 +142,7 @@ No annotation in either snapshot used an `alt_id`. The mapping is still in place
 
 ### 6.3 Propagation
 
-For each protein, its directly annotated terms are closed under their `is_a`/`part_of` ancestors. T0 goes from 89,533 direct (protein, term) pairs to 665,085 propagated pairs; T1 goes from 104,254 to 732,111.
+For each protein, its directly annotated terms are closed under their `is_a`/`part_of` ancestors. T0 goes from 89,530 direct (protein, term) pairs to 665,071 propagated pairs; T1 goes from 104,216 to 731,907.
 
 **Check:** every propagated set is closed under its parents, verified on all proteins (12,145 at T0, 13,347 at T1). For each protein and each term, every non-excluded parent must be present. 0 missing parent links. PASS.
 
@@ -166,9 +170,9 @@ Knowledge type (per namespace), as specified:
 
 | Step | Rows before | Rows after | Why |
 |---|---|---|---|
-| T1 propagated pairs, keep those new at T1 | 732,111 | 120,662 | Snapshot difference. |
-| Remove pairs curated at T0 as TAS, NAS or IC (propagated) | 120,662 | 98,132 | About a third of the new rows with an old date were pairs already asserted at T0 by authors or curators (TAS/NAS/IC) and only upgraded to experimental evidence later. That knowledge was already curated at T0, and a method reading the full GOA could simply copy it. The T0 TAS/NAS/IC rows (not negated, on universe proteins) are term-mapped and propagated, and any ground-truth pair in that set is removed. Pairs that existed at T0 only as IEA or ISS are **kept**, because confirming a prediction is what the benchmark should reward. |
-| Strict subset flag | 98,132 | 83,802 flagged | See 6.7. |
+| T1 propagated pairs, keep those new at T1 | 731,907 | 120,472 | Snapshot difference. |
+| Remove pairs curated at T0 as TAS, NAS or IC (propagated) | 120,472 | 97,946 | About a third of the new rows with an old date were pairs already asserted at T0 by authors or curators (TAS/NAS/IC) and only upgraded to experimental evidence later. That knowledge was already curated at T0, and a method reading the full GOA could simply copy it. The T0 TAS/NAS/IC rows (not negated, on universe proteins) are term-mapped and propagated, and any ground-truth pair in that set is removed. Pairs that existed at T0 only as IEA or ISS are **kept**, because confirming a prediction is what the benchmark should reward. |
+| Strict subset flag | 97,946 | 83,616 flagged | See 6.7. |
 
 ### 6.7 Strict subset (sensitivity analysis)
 
@@ -178,7 +182,7 @@ Knowledge type (per namespace), as specified:
 
 ### 6.8 Pipeline-difference diagnostics
 
-These are reported, not filtered on. The "delta" here means direct T1 rows whose (protein, term) was not known at T0: 27,858 rows.
+These are reported, not filtered on. The "delta" here means direct T1 rows whose (protein, term) was not known at T0: 27,824 rows.
 
 - **Dated before 2022-11-17:** 4,294 rows (15.4%). Most are recent (2022: 1,121; 2021: 311; 2020: 398), with a tail back to 2003. An earlier analysis of these rows found:
   - about a third were TAS/NAS/IC-to-experimental upgrades, which are now removed (6.6);
@@ -203,19 +207,19 @@ These are reported, not filtered on. The "delta" here means direct T1 rows whose
 | No root terms | PASS |
 | No protein binding or binding | PASS |
 | No empty ground-truth sets | PASS (a protein and namespace only appear if they have rows) |
-| No NK protein absent from the T0 file (scope) | PASS (0 of 1,120) |
+| No NK protein absent from the T0 file (scope) | PASS (0 of 1,104) |
 
 ### 6.10 Ground-truth results
 
-Rows: BP 60,909, CC 22,496, MF 14,727; PK 61,709, NK 20,958, LK 15,465. Median new terms per protein and namespace: BP 12, CC 5, MF 3.
+Rows: BP 60,909, CC 22,310, MF 14,727; PK 61,679, NK 20,818, LK 15,449. Median new terms per protein and namespace: BP 12, CC 5, MF 3.
 
-Protein–namespace sets per knowledge type:
+Protein–namespace sets per knowledge type. These are counted from `ground_truth_t1.tsv` and include every protein whatever its stratum. In the final build all of them have a stratum, so each cell equals dark + intermediate + well-studied in Section 9:
 
 | | NK | LK | PK |
 |---|---|---|---|
 | MF | 537 | 571 | 2,078 |
 | BP | 518 | 383 | 2,703 |
-| CC | 750 | 565 | 2,346 |
+| CC | 733 | 563 | 2,340 |
 
 ---
 
@@ -287,17 +291,32 @@ Proteins per namespace, knowledge type and stratum. The strict subset is in brac
 |---|---|---|---|
 | MF | 176 (160) / 308 (291) / 53 (48) | 71 (68) / 340 (316) / 160 (136) | 112 (96) / 910 (819) / 1,056 (969) |
 | BP | 174 (160) / 290 (272) / 54 (45) | 64 (57) / 235 (214) / 84 (70) | 141 (127) / 1,199 (1,074) / 1,363 (1,219) |
-| CC | 313 (273) / 382 (335) / 55 (50) | 74 (58) / 329 (281) / 162 (146) | 237 (186) / 1,249 (1,082) / 860 (785) |
+| CC | 301 (261) / 377 (330) / 55 (50) | 72 (56) / 329 (281) / 162 (146) | 237 (186) / 1,245 (1,078) / 858 (783) |
 
-A few NK/PK cells have proteins with no stratum (1–2 each); these are in `test_set_summary.tsv` as `unassigned`.
+No ground-truth protein lacks a stratum in the final build: the 25 unmapped proteins have no new annotations at T1. `test_set_summary.tsv` would list such proteins as `unassigned`, but it has no such rows.
 
 **Go/no-go.** The rule counts dark proteins in NK+LK. They are counted as **unique proteins**, because summing over namespaces counts a protein up to three times.
-- Full set: 590 unique dark proteins (872 protein–namespace pairs).
-- Strict subset: 521 unique.
+- Full set: 577 unique dark proteins (858 protein–namespace pairs).
+- Strict subset: 508 unique.
 
 Both are well above the threshold of 200. **GO.**
 
-Unique dark proteins per knowledge type (in any namespace): NK 421, LK 169, PK 401.
+Unique proteins per knowledge type (in any namespace): NK 1,104 (410 dark), LK 1,297 (167 dark), PK 4,940 (401 dark).
+
+### 9.1 What NK means in practice
+
+NK means "no experimental annotation **left after filtering** at T0". Because of the filters, NK includes proteins that did have experimental annotations at T0, but only of kinds the benchmark does not count as knowledge. `nk_origin` in `scripts/build_t1.py` goes back to the T0 GAF rows (allowed evidence codes, not negated) of every NK protein and classifies why they did not survive:
+
+| Origin of NK protein | NK proteins | of which dark |
+|---|---|---|
+| Only protein binding / binding (GO:0005515, GO:0005488) | 455 | 173 |
+| No experimental annotation at all | 401 | 171 |
+| HPA-derived plus protein binding / binding only | 160 | 44 |
+| Only HPA-derived (localization) | 87 | 22 |
+| Obsolete or root term plus protein binding only | 1 | 0 |
+| **Total** | **1,104** | **410** |
+
+So only 36% of NK proteins (401) had no experimental annotation of any kind at T0. The other 64% had only "binds protein X" (an IPI to protein binding) and/or an HPA localization. Both follow from deliberate decisions: protein binding is uninformative (README), and HPA data is excluded to avoid overlap with T2 and leakage (5.3). They matter for interpreting results. Prediction tasks with an NK protein whose only T0 knowledge was a single interaction are not the same as ones on a truly uncharacterised protein. A per-origin breakdown of results (or restricting to the 401) is the natural answer if a reviewer asks; the table is in the report.
 
 ---
 
@@ -325,8 +344,8 @@ Result: 5 passed.
 | File | Rows | Columns |
 |---|---|---|
 | `proteins.tsv` | 18,221 | accession, gene, entrez_id (`;`-joined if several), pmid_count_t0, stratum, tdl, tdl_source, has_exp_t0_mf/bp/cc |
-| `annotations_t0.tsv` | 665,085 | accession, namespace, go_id: the propagated T0 training signal |
-| `ground_truth_t1.tsv` | 98,132 | accession, namespace, go_id, knowledge_type, strict |
+| `annotations_t0.tsv` | 665,071 | accession, namespace, go_id: the propagated T0 training signal |
+| `ground_truth_t1.tsv` | 97,946 | accession, namespace, go_id, knowledge_type, strict |
 | `test_set_summary.tsv` | 27 | namespace, knowledge_type, stratum, proteins, proteins_strict |
 | `provenance.json` | | every source (URL, md5, release, download date), GAF headers, ontology version, PMID boundary, accession-mapping stats, the full config, build date |
 
@@ -344,7 +363,7 @@ The report is in `reports/t1_report.md`.
 | 4 | Per HPA gene, prefer the entry in the T0 GAF, else the first listed | Claude (after "no more questions") | HPA's order is alphabetical, so the first entry is arbitrary; the T0 entry keeps T0 and T1 on the same protein |
 | 5 | Drop proteins absent from the T0 GAF | User | Their T0 state is unknown |
 | 6 | Exclude Ig/TR gene segments | User | Not proteins with their own function; they pad the dark stratum |
-| 7 | Remove `GO_REF:0000052` from T0 and T1 | User suggestion, Claude decision | Overlaps with T2 and leaks into HPA-image models; removing from both snapshots keeps it consistent |
+| 7 | Remove HPA-derived references (`GO_REF:0000052`, PMID:31429579, PMID:22042635) from T0 and T1 | User suggestion, Claude decision | Overlaps with T2 and leaks into HPA-image models; removing from both snapshots keeps it consistent. The two PMIDs are HPA antibody papers cited by UniProt |
 | 8 | Remove ground-truth pairs curated at T0 as TAS/NAS/IC; keep IEA/ISS | User | An evidence upgrade is not a discovery; confirming a prediction is |
 | 9 | Add a `strict` flag (rows dated on or after T0 GOA) for a sensitivity analysis | User | Separates pipeline differences from real discoveries without using the date column to define the main set |
 | 10 | Remove protein binding and binding after propagation | User | Children re-add them, and they are uninformative |
@@ -365,4 +384,5 @@ The report is in `reports/t1_report.md`.
 3. **gene2pubmed links are current.** Links added after T0 to papers from before T0 still count. This follows the specification, and the PMID boundary limits the papers but not the links.
 4. **The PMID-order assumption.** The boundary relies on PMIDs being assigned in entry order. Back-dated records show this does not hold for every record, but the paper counts depend only on which PMIDs fall below the boundary. That is approximately right, because back-dated records have higher PMIDs and are excluded.
 5. **TDL is post-T0** and must not be used as a T0 feature.
-6. **The HPA reference filter covers `GO_REF:0000052` only.** HPA-derived annotations under other references, if any exist, are not removed.
+6. **The HPA reference filter covers `GO_REF:0000052` and the two HPA antibody-profiling PMIDs found in Section 5.3.** HPA antibodies used in other labs' papers are not removed; those are independent studies, not HPA atlas data.
+7. **NK includes proteins with filtered-out T0 knowledge** (Section 9.1): 703 of 1,104 NK proteins had only protein-binding and/or HPA annotations at T0.
