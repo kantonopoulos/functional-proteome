@@ -65,32 +65,19 @@ def sequence_filter(universe: pd.DataFrame, t0: date) -> pd.DataFrame:
 
 
 def hpa_gene_accessions(path: Path, secondary_to_primary: dict[str, str],
-                        t0_accessions: set[str]) -> set[str]:
-    """One UniProt accession per HPA v22 gene, mapped to current primary accessions."""
+                        t0_accessions: set[str]) -> dict[str, str]:
+    """One UniProt accession per HPA v22 gene, mapped to its Ensembl gene ID."""
     with zipfile.ZipFile(path) as archive:
-        hpa = pd.read_csv(archive.open("proteinatlas.tsv"), sep="\t", usecols=["Gene", "Uniprot"])
-    listed = hpa["Uniprot"].dropna().map(
-        lambda ids: [secondary_to_primary.get(a.strip(), a.strip()) for a in ids.split(",")])
-    # HPA lists accessions alphabetically, so "first" is arbitrary; the entry goa_human used at
-    # T0 is the gene's reference protein, and picking it keeps T0 and T1 on the same protein.
-    chosen = {next((a for a in ids if a in t0_accessions), ids[0]) for ids in listed}
-    log.info("HPA v22 genes: %d, with UniProt: %d", len(hpa), len(listed))
+        hpa = pd.read_csv(archive.open("proteinatlas.tsv"), sep="\t",
+                          usecols=["Gene", "Ensembl", "Uniprot"]).dropna(subset=["Uniprot"])
+    chosen: dict[str, str] = {}
+    for ensembl, ids in zip(hpa["Ensembl"], hpa["Uniprot"]):
+        listed = [secondary_to_primary.get(a.strip(), a.strip()) for a in ids.split(",")]
+        # HPA lists accessions alphabetically, so "first" is arbitrary; the entry goa_human
+        # used at T0 is the gene's reference protein and keeps T0 and T1 on the same protein.
+        chosen[next((a for a in listed if a in t0_accessions), listed[0])] = ensembl
+    log.info("HPA v22 genes with UniProt: %d", len(hpa))
     return chosen
-
-
-def same_gene_as_t0_protein(proteins: pd.DataFrame, t0_accessions: set[str],
-                            t0_symbols: set[str]) -> set[str]:
-    """Proteins absent from the T0 GAF that share a GeneID or symbol with a protein in it."""
-    gene_to_accessions: dict[str, set[str]] = {}
-    for accession, entrez_ids in zip(proteins["accession"], proteins["entrez_ids"]):
-        for gene_id in entrez_ids:
-            gene_to_accessions.setdefault(gene_id, set()).add(accession)
-    return {
-        a for a, gene, entrez_ids in zip(proteins["accession"], proteins["gene"], proteins["entrez_ids"])
-        if a not in t0_accessions
-        and (gene in t0_symbols
-             or any((gene_to_accessions[g] - {a}) & t0_accessions for g in entrez_ids))
-    }
 
 
 def keep_accessions(proteins: pd.DataFrame, accessions: set[str]) -> pd.DataFrame:

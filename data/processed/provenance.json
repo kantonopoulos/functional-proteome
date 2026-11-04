@@ -49,6 +49,13 @@
       "file": "uniprot_sprot_human.txt.gz",
       "md5": "cdfe580d07365aeb32dc4f2bec06bc6d",
       "url": "https://rest.uniprot.org/uniprotkb/search?compressed=true&format=txt&size=500&query=%28organism_id%3A9606%29+AND+%28reviewed%3Atrue%29"
+    },
+    "gene2ensembl": {
+      "file": "gene2ensembl.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2ensembl.gz",
+      "md5": "8ed7ecf8c9d560fd9fe2e0e9f9fbdebd",
+      "bytes": 316665494,
+      "download_date": "2026-11-04"
     }
   },
   "gaf_headers": {
@@ -250,8 +257,8 @@
   "accession_mapping": {
     "T0": {
       "isoform_rows_collapsed": 0,
-      "secondary_rows_mapped": 2,
-      "secondary_accessions_mapped": 1,
+      "secondary_rows_mapped": 0,
+      "secondary_accessions_mapped": 0,
       "ambiguous_rows_dropped": 0,
       "ambiguous_accessions_dropped": []
     },
@@ -276,6 +283,7 @@
       "gaf_t1": "https://release.geneontology.org/2026-08-05/annotations/gaf/HUMAN-uniprot.gaf.gz",
       "go_obo_t0": "https://release.geneontology.org/2023-01-01/ontology/go-basic.obo",
       "gene2pubmed": "https://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2pubmed.gz",
+      "gene2ensembl": "https://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2ensembl.gz",
       "uniprot_sprot_human": "https://rest.uniprot.org/uniprotkb/search?compressed=true&format=txt&size=500&query=%28organism_id%3A9606%29+AND+%28reviewed%3Atrue%29",
       "hpa_v22": "https://v22.proteinatlas.org/download/proteinatlas.tsv.zip",
       "pharos_graphql": "https://pharos-api.ncats.io/graphql",
@@ -286,6 +294,7 @@
       "gaf_t1": "goa_human_t1_go2026-08-05.gaf.gz",
       "go_obo_t0": "go-basic_2023-01-01.obo",
       "gene2pubmed": "gene2pubmed.gz",
+      "gene2ensembl": "gene2ensembl.gz",
       "uniprot_sprot_human": "uniprot_sprot_human.txt.gz",
       "hpa_v22": "proteinatlas_v22.tsv.zip",
       "pharos_tdl": "pharos_tdl.tsv",
@@ -308,6 +317,9 @@
     ],
     "INCLUDE_HTP": false,
     "PROTEIN_BINDING": "GO:0005515",
+    "EXCLUDED_REFERENCES": [
+      "GO_REF:0000052"
+    ],
     "ROOT_TERMS": {
       "GO:0003674": "MF",
       "GO:0008150": "BP",

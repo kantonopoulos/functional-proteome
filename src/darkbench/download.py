@@ -142,7 +142,8 @@ def download_pharos(manifest: dict, page_size: int = 1000) -> Path:
 def download_all() -> dict:
     config.RAW_DIR.mkdir(parents=True, exist_ok=True)
     manifest = load_manifest()
-    for name in ["gaf_t0", "gaf_t1", "go_obo_t0", "gene2pubmed", "uniprot_sprot_human", "hpa_v22"]:
+    for name in ["gaf_t0", "gaf_t1", "go_obo_t0", "gene2pubmed", "gene2ensembl",
+                 "uniprot_sprot_human", "hpa_v22"]:
         download_file(name, manifest)
         save_manifest(manifest)
     download_pharos(manifest)

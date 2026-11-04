@@ -94,6 +94,26 @@ def read_gene2pubmed(path: Path) -> pd.DataFrame:
     return pd.concat(chunk[chunk["tax_id"] == config.TAXON_ID] for chunk in chunks)
 
 
+def read_gene2ensembl(path: Path) -> dict[str, list[str]]:
+    table = pd.read_csv(path, sep="\t", usecols=[0, 1, 2], header=0,
+                        names=["tax_id", "gene_id", "ensembl_gene"], dtype=str)
+    table = table[table["tax_id"] == str(config.TAXON_ID)].drop_duplicates(["gene_id", "ensembl_gene"])
+    return table.groupby("ensembl_gene")["gene_id"].apply(list).to_dict()
+
+
+def fill_entrez_from_ensembl(proteins: pd.DataFrame, accession_to_ensembl: dict[str, str],
+                             ensembl_to_entrez: dict[str, list[str]]) -> tuple[pd.Series, list[str]]:
+    """UniProt lacks a GeneID xref for some real genes; recover it via HPA's Ensembl ID."""
+    filled = proteins["entrez_ids"].copy()
+    recovered: list[str] = []
+    for i, (accession, ids) in enumerate(zip(proteins["accession"], proteins["entrez_ids"])):
+        fallback = ensembl_to_entrez.get(accession_to_ensembl.get(accession, ""), [])
+        if not ids and fallback:
+            filled.iat[i] = fallback
+            recovered.append(accession)
+    return filled, recovered
+
+
 def paper_counts(gene2pubmed: pd.DataFrame, boundary: int, steps: StepLog) -> pd.Series:
     """Distinct pre-T0 PMIDs per human GeneID, excluding large-scale screens."""
     links = gene2pubmed[["gene_id", "pmid"]].drop_duplicates()

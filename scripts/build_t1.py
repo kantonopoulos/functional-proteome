@@ -67,6 +67,32 @@ def map_and_propagate(df: pd.DataFrame, label: str, onto: ontology.Ontology,
     return propagated, counts.assign(snapshot=label)
 
 
+def delta_rows(t1: pd.DataFrame, t0_prop: pd.DataFrame, onto: ontology.Ontology) -> pd.DataFrame:
+    """Direct T1 annotation rows whose (protein, term) was not known at T0 after propagation."""
+    mapped, _ = ontology.map_terms(t1, onto)
+    known = set(zip(t0_prop["accession"], t0_prop["go_id"]))
+    return mapped[[(a, g) not in known for a, g in zip(mapped["accession"], mapped["go_id"])]]
+
+
+def pipeline_difference_section(delta: pd.DataFrame, t0: pd.DataFrame, t0_goa: date) -> str:
+    # T0 and T1 come from different file pipelines, so "new" rows may be processing artifacts.
+    dated = pd.to_datetime(delta["date"], format="%Y%m%d")
+    early = dated < pd.Timestamp(t0_goa)
+    shares = pd.concat([t0["assigned_by"].value_counts(normalize=True).rename("T0 share"),
+                        delta["assigned_by"].value_counts(normalize=True).rename("delta share")],
+                       axis=1).fillna(0).sort_values("delta share", ascending=False).round(4)
+    only_t1 = sorted(set(delta["assigned_by"]) - set(t0["assigned_by"]))
+    by_year = dated[early].dt.year.value_counts().sort_index()
+    return (
+        "\n## T0/T1 pipeline-difference checks\n\n"
+        f"- Delta rows (direct T1 rows not known at T0): {len(delta)}.\n"
+        f"- Delta rows with annotation date before the T0 GOA release ({t0_goa}): "
+        f"{int(early.sum())} ({early.mean():.1%}). By year: {by_year.to_dict()}.\n"
+        f"- Sources present only in the delta, not in T0: {only_t1}.\n\n"
+        + markdown_table(shares.head(15).reset_index(names="assigned_by")) + "\n"
+    )
+
+
 def summarise(gt: pd.DataFrame, strata: pd.DataFrame) -> pd.DataFrame:
     per_protein = gt[["accession", "namespace", "knowledge_type"]].drop_duplicates()
     per_protein = per_protein.merge(strata, on="accession", how="left")
@@ -112,19 +138,16 @@ def main() -> None:
     t0_raw = load_gaf("gaf_t0", t0_header["gaf_version"], "T0", checks)
     t1_raw = load_gaf("gaf_t1", t1_header["gaf_version"], "T1", checks)
     t0_ids = raw_t0_accessions(t0_raw, sec_map)
-    t0_symbols = set(t0_raw["db_object_symbol"])
 
-    hpa_ids = proteins.hpa_gene_accessions(
+    hpa_ensembl = proteins.hpa_gene_accessions(
         config.RAW_DIR / config.RAW_FILES["hpa_v22"], sec_map, t0_ids)
-    in_hpa = proteins.keep_accessions(kept, hpa_ids)
+    in_hpa = proteins.keep_accessions(kept, set(hpa_ensembl))
     steps.add("proteins", "HPA v22 gene, one protein per gene (T0-file entry preferred)",
               len(kept), len(in_hpa))
-    # goa_human keeps one protein per gene, so another product of a gene is missing at T0
-    # and would look NK because of file scope rather than knowledge.
-    same_gene = proteins.same_gene_as_t0_protein(universe, t0_ids, t0_symbols)
-    final = proteins.keep_accessions(in_hpa, set(in_hpa["accession"]) - same_gene)
-    steps.add("proteins", "not a same-gene product missing from the T0 GAF", len(in_hpa), len(final))
-    log.info("same-gene proteins dropped: %s", sorted(set(in_hpa["accession"]) & same_gene))
+    # Absence from goa_human means "outside the file's scope", not "no annotations", so a
+    # protein missing from the T0 file has an unknown T0 state and cannot be labelled NK.
+    final = proteins.keep_accessions(in_hpa, t0_ids)
+    steps.add("proteins", "present in the T0 GAF (any evidence)", len(in_hpa), len(final))
     checks.add("One protein per HPA gene", final["accession"].is_unique, f"{len(final)} proteins")
     final_ids = set(final["accession"])
 
@@ -167,15 +190,13 @@ def main() -> None:
     checks.add("No root terms in ground truth", n == 0, f"{n} root rows")
     n = ground_truth.check_no_empty_sets(gt)
     checks.add("No empty ground-truth sets", n == 0, f"{n} empty")
-    # goa_human keeps one protein per gene, so a second product of a gene is missing at T0
-    # and would look NK because of file scope rather than knowledge.
     nk = set(gt.loc[gt["knowledge_type"] == "NK", "accession"])
     absent = sorted(nk - t0_ids)
-    artifacts = sorted(set(absent) & same_gene)
-    checks.add("No NK protein is a same-gene product missing from the T0 GAF (scope check)",
-               len(artifacts) == 0,
-               f"{len(artifacts)} artifacts; {len(absent)} of {len(nk)} NK proteins absent from the "
-               f"T0 file with no same-gene T0 protein (kept as NK): {', '.join(absent)}")
+    checks.add("No NK protein is absent from the T0 GAF (scope check)", len(absent) == 0,
+               f"{len(absent)} of {len(nk)} NK proteins absent")
+    delta = delta_rows(filtered["T1"], t0_prop, onto)
+    t0_goa = date.fromisoformat(t0_header["goa_date_generated"][:10])
+    pipeline_section = pipeline_difference_section(delta, filtered["T0"], t0_goa)
 
     # 5. Literature strata
     boundary = literature.find_pmid_boundary(config.PMID_CUTOFF_DATE)
@@ -186,6 +207,9 @@ def main() -> None:
     g2p = literature.read_gene2pubmed(config.RAW_DIR / config.RAW_FILES["gene2pubmed"])
     gene_counts = literature.paper_counts(g2p, boundary["pmid_boundary"], steps)
 
+    ensembl_to_entrez = literature.read_gene2ensembl(config.RAW_DIR / config.RAW_FILES["gene2ensembl"])
+    final["entrez_ids"], recovered = literature.fill_entrez_from_ensembl(final, hpa_ensembl, ensembl_to_entrez)
+    print(f"GeneIDs recovered via HPA Ensembl -> gene2ensembl: {len(recovered)}")
     table = final[["accession", "gene"]].copy()
     table["entrez_id"] = final["entrez_ids"].map(";".join)
     table["pmid_count_t0"] = literature.protein_paper_counts(final, gene_counts).astype("Int64")
@@ -216,14 +240,14 @@ def main() -> None:
     summary = summarise(gt, table[["accession", "stratum"]])
     summary.to_csv(config.PROCESSED_DIR / "test_set_summary.tsv", sep="\t", index=False)
 
-    dark_nk_lk = int(summary[(summary["stratum"] == "dark")
-                             & summary["knowledge_type"].isin(["NK", "LK"])]["proteins"].sum())
-    if dark_nk_lk < config.GO_NO_GO_MIN_DARK_NK_LK:
-        go_no_go = (f"> **NO-GO FLAG: only {dark_nk_lk} dark proteins in NK+LK across all namespaces "
-                    f"(threshold {config.GO_NO_GO_MIN_DARK_NK_LK}).**")
-    else:
-        go_no_go = (f"> **GO: {dark_nk_lk} dark proteins in NK+LK summed across namespaces "
-                    f"(threshold {config.GO_NO_GO_MIN_DARK_NK_LK}).**")
+    dark = set(table.loc[table["stratum"] == "dark", "accession"])
+    nk_lk = gt[gt["knowledge_type"].isin(["NK", "LK"])]
+    # Unique proteins: summing over namespaces counts a protein up to three times.
+    dark_nk_lk = len(set(nk_lk["accession"]) & dark)
+    dark_pairs = len(nk_lk[nk_lk["accession"].isin(dark)][["accession", "namespace"]].drop_duplicates())
+    verdict = "GO" if dark_nk_lk >= config.GO_NO_GO_MIN_DARK_NK_LK else "NO-GO FLAG"
+    go_no_go = (f"> **{verdict}: {dark_nk_lk} unique dark proteins in NK+LK in any namespace "
+                f"(threshold {config.GO_NO_GO_MIN_DARK_NK_LK}); {dark_pairs} protein-namespace pairs.**")
 
     provenance = {
         "sources": manifest,
@@ -258,8 +282,11 @@ def main() -> None:
         "human entries. Both are restricted to the same protein universe; see the scope check.",
         "Protein universe: one UniProt entry per HPA v22 gene (user decision). HPA lists accessions "
         "alphabetically, so the entry present in the T0 GAF is preferred, else the first listed. "
-        "Proteins absent from the T0 GAF that share a GeneID or symbol with a T0-file protein are "
-        "dropped as same-gene artifacts of goa_human's one-protein-per-gene scope.",
+        "Proteins absent from the T0 GAF are dropped: their T0 state is unknown (user decision).",
+        f"Annotations with references {config.EXCLUDED_REFERENCES} (HPA immunofluorescence) are "
+        "removed from T0 and T1: they overlap with T2 and leak into models using HPA image features.",
+        f"GeneIDs missing from UniProt were recovered for {len(recovered)} proteins via HPA Ensembl ID "
+        "and NCBI gene2ensembl.",
         "Proteins with several GeneIDs take the max paper count over their GeneIDs (user decision).",
         "Secondary accessions that map to several current entries are dropped (user decision): "
         f"T0 {mapping_stats['T0']['ambiguous_accessions_dropped']}, "
@@ -271,6 +298,7 @@ def main() -> None:
     ]
     report = render_report(go_no_go, sources, steps.frame(), term_mapping, summary,
                            checks.frame(), spot, notes)
+    report += pipeline_section
     report += ("\n## Proteins without a GeneID mapping (no stratum)\n\n<details><summary>"
                f"{len(unmapped)} proteins</summary>\n\n"
                + ", ".join(f"{a} ({g})" for a, g in zip(unmapped["accession"], unmapped["gene"].fillna("-")))

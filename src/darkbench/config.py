@@ -26,6 +26,7 @@ URLS = {
     "gaf_t1": f"https://release.geneontology.org/{GO_RELEASE_T1}/annotations/gaf/HUMAN-uniprot.gaf.gz",
     "go_obo_t0": f"https://release.geneontology.org/{GO_RELEASE_T0}/ontology/go-basic.obo",
     "gene2pubmed": "https://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2pubmed.gz",
+    "gene2ensembl": "https://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2ensembl.gz",
     # The flat file is used because the TSV export has no secondary-accession field.
     "uniprot_sprot_human": (
         "https://rest.uniprot.org/uniprotkb/search?compressed=true&format=txt&size=500"
@@ -42,6 +43,7 @@ RAW_FILES = {
     "gaf_t1": f"goa_human_t1_go{GO_RELEASE_T1}.gaf.gz",
     "go_obo_t0": "go-basic_2023-01-01.obo",
     "gene2pubmed": "gene2pubmed.gz",
+    "gene2ensembl": "gene2ensembl.gz",
     "uniprot_sprot_human": "uniprot_sprot_human.txt.gz",
     "hpa_v22": "proteinatlas_v22.tsv.zip",
     "pharos_tdl": "pharos_tdl.tsv",
@@ -53,6 +55,9 @@ HTP_EVIDENCE_CODES = ["HTP", "HDA", "HMP", "HGI", "HEP"]
 INCLUDE_HTP = False
 
 PROTEIN_BINDING = "GO:0005515"
+# HPA immunofluorescence curated into GO. Removed from both snapshots because it overlaps
+# with T2 and would leak into any model that uses HPA image features.
+EXCLUDED_REFERENCES = ["GO_REF:0000052"]
 ROOT_TERMS = {"GO:0003674": "MF", "GO:0008150": "BP", "GO:0005575": "CC"}
 NAMESPACES = {
     "molecular_function": "MF",

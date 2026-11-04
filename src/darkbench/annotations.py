@@ -114,6 +114,8 @@ def filter_annotations(
     df = steps.filter(df, label, "evidence codes", df["evidence"].isin(config.evidence_codes()))
     df = steps.filter(df, label, "NOT qualifier", ~df["qualifier"].map(is_negated))
     df = steps.filter(df, label, "protein binding", df["go_id"] != config.PROTEIN_BINDING)
+    df = steps.filter(df, label, "HPA-derived references",
+                      ~df["reference"].map(lambda r: bool(set(r.split("|")) & set(config.EXCLUDED_REFERENCES))))
     before = len(df)
     df, mapping_stats = map_accessions(df, secondary_to_primary, ambiguous, universe)
     steps.add(label, "accession mapping", before, len(df))
