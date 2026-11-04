@@ -17,7 +17,7 @@ Scope: the T0 knowledge snapshot, the T1 ground truth and the study-level strata
 | Ground truth (propagated, new at T1) | 97,946 rows on 6,609 proteins; 83,616 rows in the strict subset |
 | Strata | 5,565 dark, 9,003 intermediate, 3,628 well-studied, 25 unassigned |
 | Go/no-go | **GO**: 577 unique dark proteins in NK+LK (threshold 200); 508 in the strict subset |
-| Checks | 27 PASS, 0 FAIL, 1 ACCEPTED (T0 GOA lag of 45 days, accepted by the user) |
+| Checks | 26 PASS, 0 FAIL, 1 ACCEPTED (T0 GOA lag of 45 days, accepted by the user) |
 | Tests | 5 pytest tests pass |
 
 ---
@@ -144,7 +144,7 @@ No annotation in either snapshot used an `alt_id`. The mapping is still in place
 
 For each protein, its directly annotated terms are closed under their `is_a`/`part_of` ancestors. T0 goes from 89,530 direct (protein, term) pairs to 665,071 propagated pairs; T1 goes from 104,216 to 731,907.
 
-**Check:** every propagated set is closed under its parents, verified on all proteins (12,145 at T0, 13,347 at T1). For each protein and each term, every non-excluded parent must be present. 0 missing parent links. PASS.
+**Check:** every propagated set is closed under its parents, verified on all proteins (12,145 at T0, 13,331 at T1). For each protein and each term, every non-excluded parent must be present. 0 missing parent links. PASS.
 
 ### 6.4 Terms removed after propagation
 
