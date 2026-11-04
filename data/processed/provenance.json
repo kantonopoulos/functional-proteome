@@ -1,0 +1,167 @@
+{
+  "sources": {
+    "gaf_t0": {
+      "bytes": 11243270,
+      "download_date": "2026-11-04",
+      "file": "goa_human_t0_go2023-01-01.gaf.gz",
+      "md5": "082ce90c7565a48721f403c73b23419c",
+      "url": "https://release.geneontology.org/2023-01-01/annotations/goa_human.gaf.gz"
+    },
+    "gaf_t1": {
+      "bytes": 12109254,
+      "download_date": "2026-11-04",
+      "file": "goa_human_t1_go2026-08-05.gaf.gz",
+      "md5": "f74b40c53bdf8ed39d300a491eaf852d",
+      "url": "https://release.geneontology.org/2026-08-05/annotations/gaf/HUMAN-uniprot.gaf.gz"
+    },
+    "gene2pubmed": {
+      "bytes": 290725245,
+      "download_date": "2026-11-04",
+      "file": "gene2pubmed.gz",
+      "md5": "c0435aa0c5564c4328fe984eb7a06767",
+      "url": "https://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2pubmed.gz"
+    },
+    "go_obo_t0": {
+      "bytes": 30992530,
+      "download_date": "2026-11-04",
+      "file": "go-basic_2023-01-01.obo",
+      "md5": "1208619d97a7bba65757c7c1fa4738d1",
+      "url": "https://release.geneontology.org/2023-01-01/ontology/go-basic.obo"
+    },
+    "pharos_tdl": {
+      "bytes": 386943,
+      "download_date": "2026-11-04",
+      "file": "pharos_tdl.tsv",
+      "md5": "ee6e04618be517a405eb83ee3dc8c142",
+      "release": "Pharos dbVersion pharos319 (current, post-T0)",
+      "url": "https://pharos-api.ncats.io/graphql"
+    },
+    "uniprot_sprot_human": {
+      "bytes": 127044473,
+      "download_date": "2026-11-04",
+      "file": "uniprot_sprot_human.txt.gz",
+      "md5": "cdfe580d07365aeb32dc4f2bec06bc6d",
+      "url": "https://rest.uniprot.org/uniprotkb/search?compressed=true&format=txt&size=500&query=%28organism_id%3A9606%29+AND+%28reviewed%3Atrue%29"
+    }
+  },
+  "gaf_headers": {
+    "T0": {
+      "gaf_version": "2.2",
+      "goa_date_generated": "2022-11-17 12:25",
+      "all_date_generated": [
+        "2023-01-02T13:06",
+        "2023-01-02T01:57",
+        "2022-11-17 12:25",
+        "2022-10-13"
+      ],
+      "go_version": [
+        "http://purl.obolibrary.org/obo/go/releases/2022-11-12/extensions/go-plus.owl"
+      ]
+    },
+    "T1": {
+      "gaf_version": "2.2",
+      "goa_date_generated": "2026-07-28 19:42",
+      "all_date_generated": [
+        "2026-07-28 19:42"
+      ],
+      "go_version": [
+        "http://purl.obolibrary.org/obo/go/releases/2026-07-26/extensions/go-plus.ofn"
+      ]
+    }
+  },
+  "go_ontology_data_version": "releases/2023-01-01",
+  "pmid_boundary": {
+    "cutoff_date": "2022-12-31",
+    "pmid_boundary": 42694844,
+    "boundary_entrez_date": "2026/09/04 10:41",
+    "pmids_scanned": 20340,
+    "query": "[EDAT] per day, 2022-12-25..2022-12-31",
+    "download_date": "2026-11-04"
+  },
+  "accession_mapping": {
+    "T0": {
+      "isoform_rows_collapsed": 0,
+      "secondary_rows_mapped": 2,
+      "secondary_accessions_mapped": 1,
+      "ambiguous_rows_dropped": 0,
+      "ambiguous_accessions_dropped": []
+    },
+    "T1": {
+      "isoform_rows_collapsed": 0,
+      "secondary_rows_mapped": 0,
+      "secondary_accessions_mapped": 0,
+      "ambiguous_rows_dropped": 0,
+      "ambiguous_accessions_dropped": []
+    }
+  },
+  "config": {
+    "T0_DATE": "2023-01-01",
+    "PMID_CUTOFF_DATE": "2022-12-31",
+    "TAXON_ID": 9606,
+    "GO_RELEASE_T0": "2023-01-01",
+    "GO_RELEASE_T1": "2026-08-05",
+    "MAX_T0_GOA_LAG_DAYS": 42,
+    "T0_GOA_LAG_ACCEPTED": true,
+    "URLS": {
+      "gaf_t0": "https://release.geneontology.org/2023-01-01/annotations/goa_human.gaf.gz",
+      "gaf_t1": "https://release.geneontology.org/2026-08-05/annotations/gaf/HUMAN-uniprot.gaf.gz",
+      "go_obo_t0": "https://release.geneontology.org/2023-01-01/ontology/go-basic.obo",
+      "gene2pubmed": "https://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2pubmed.gz",
+      "uniprot_sprot_human": "https://rest.uniprot.org/uniprotkb/search?compressed=true&format=txt&size=500&query=%28organism_id%3A9606%29+AND+%28reviewed%3Atrue%29",
+      "pharos_graphql": "https://pharos-api.ncats.io/graphql",
+      "eutils": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
+    },
+    "RAW_FILES": {
+      "gaf_t0": "goa_human_t0_go2023-01-01.gaf.gz",
+      "gaf_t1": "goa_human_t1_go2026-08-05.gaf.gz",
+      "go_obo_t0": "go-basic_2023-01-01.obo",
+      "gene2pubmed": "gene2pubmed.gz",
+      "uniprot_sprot_human": "uniprot_sprot_human.txt.gz",
+      "pharos_tdl": "pharos_tdl.tsv",
+      "pmid_boundary": "pmid_boundary.json"
+    },
+    "EVIDENCE_CODES": [
+      "EXP",
+      "IDA",
+      "IPI",
+      "IMP",
+      "IGI",
+      "IEP"
+    ],
+    "HTP_EVIDENCE_CODES": [
+      "HTP",
+      "HDA",
+      "HMP",
+      "HGI",
+      "HEP"
+    ],
+    "INCLUDE_HTP": false,
+    "PROTEIN_BINDING": "GO:0005515",
+    "ROOT_TERMS": {
+      "GO:0003674": "MF",
+      "GO:0008150": "BP",
+      "GO:0005575": "CC"
+    },
+    "NAMESPACES": {
+      "molecular_function": "MF",
+      "biological_process": "BP",
+      "cellular_component": "CC"
+    },
+    "PROPAGATION_RELATIONS": [
+      "is_a",
+      "part_of"
+    ],
+    "MAX_GENES_PER_PMID": 100,
+    "DARK_MAX_PAPERS": 10,
+    "WELL_STUDIED_MIN_PAPERS": 100,
+    "SPOT_CHECK_GENES": [
+      "TP53",
+      "BRCA1",
+      "LYSET"
+    ],
+    "SPOT_CHECK_PER_STRATUM": 5,
+    "RANDOM_SEED": 0,
+    "GO_NO_GO_MIN_DARK_NK_LK": 200
+  },
+  "build_date": "2026-11-04"
+}

@@ -1,0 +1,5 @@
+pandas
+requests
+networkx
+obonet
+pytest
