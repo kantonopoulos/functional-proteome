@@ -71,6 +71,9 @@ NAMESPACES = {
     "cellular_component": "CC",
 }
 PROPAGATION_RELATIONS = ("is_a", "part_of")
+# Removed after propagation too: children re-add them, and they are uninformative.
+UNINFORMATIVE_TERMS = [PROTEIN_BINDING, "GO:0005488"]  # protein binding, binding
+DROPPED_AFTER_PROPAGATION = set(ROOT_TERMS) | set(UNINFORMATIVE_TERMS)
 
 # Large-scale screens link hundreds of genes per paper without adding real knowledge.
 MAX_GENES_PER_PMID = 100

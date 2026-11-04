@@ -62,7 +62,7 @@ def map_and_propagate(df: pd.DataFrame, label: str, onto: ontology.Ontology,
     mapped, counts = ontology.map_terms(df, onto)
     steps.add(label, "GO term in T0 ontology (after alt_id/obsolete mapping)", len(df), len(mapped))
     propagated = ontology.propagate(mapped, onto)
-    steps.add(label, "propagated (protein, term) pairs, roots removed",
+    steps.add(label, "propagated (protein, term) pairs, roots and binding terms removed",
               len(mapped[["accession", "go_id"]].drop_duplicates()), len(propagated))
     return propagated, counts.assign(snapshot=label)
 
@@ -197,6 +197,8 @@ def main() -> None:
     checks.add("NK/LK/PK mutually exclusive per protein and namespace", n == 0, f"{n} conflicts")
     n = ground_truth.check_no_roots(gt)
     checks.add("No root terms in ground truth", n == 0, f"{n} root rows")
+    n = int(gt["go_id"].isin(config.UNINFORMATIVE_TERMS).sum() + t0_prop["go_id"].isin(config.UNINFORMATIVE_TERMS).sum())
+    checks.add("No protein binding / binding in T0 annotations or ground truth", n == 0, f"{n} rows")
     n = ground_truth.check_no_empty_sets(gt)
     checks.add("No empty ground-truth sets", n == 0, f"{n} empty")
     nk = set(gt.loc[gt["knowledge_type"] == "NK", "accession"])

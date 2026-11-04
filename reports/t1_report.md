@@ -49,7 +49,7 @@
 | T0 | accession mapping | 120682 | 120682 | 0 |
 | T0 | Swiss-Prot universe | 120682 | 120681 | 1 |
 | T0 | sequence filter | 120681 | 119061 | 1620 |
-| T0 | HPA v22 gene set and same-gene filter | 119061 | 118301 | 760 |
+| T0 | protein universe (HPA v22, in T0 GAF, not Ig/TR) | 119061 | 118301 | 760 |
 | T1 | UniProtKB, taxon 9606 | 910476 | 862694 | 47782 |
 | T1 | evidence codes | 862694 | 448915 | 413779 |
 | T1 | NOT qualifier | 448915 | 447749 | 1166 |
@@ -58,14 +58,14 @@
 | T1 | accession mapping | 161262 | 161262 | 0 |
 | T1 | Swiss-Prot universe | 161262 | 161262 | 0 |
 | T1 | sequence filter | 161262 | 158899 | 2363 |
-| T1 | HPA v22 gene set and same-gene filter | 158899 | 157491 | 1408 |
+| T1 | protein universe (HPA v22, in T0 GAF, not Ig/TR) | 158899 | 157491 | 1408 |
 | T0 | GO term in T0 ontology (after alt_id/obsolete mapping) | 118301 | 118295 | 6 |
-| T0 | propagated (protein, term) pairs, roots removed | 89533 | 675786 | -586253 |
+| T0 | propagated (protein, term) pairs, roots and binding terms removed | 89533 | 665085 | -575552 |
 | T1 | GO term in T0 ontology (after alt_id/obsolete mapping) | 157491 | 156139 | 1352 |
-| T1 | propagated (protein, term) pairs, roots removed | 104254 | 743367 | -639113 |
-| ground truth | T1 propagated pairs -> new at T1 | 743367 | 121476 | 621891 |
-| ground truth | not curated at T0 as TAS/NAS/IC (propagated) | 121476 | 98850 | 22626 |
-| ground truth | strict subset (annotation date >= 2022-11-17) | 98850 | 84387 | 14463 |
+| T1 | propagated (protein, term) pairs, roots and binding terms removed | 104254 | 732111 | -627857 |
+| ground truth | T1 propagated pairs -> new at T1 | 732111 | 120662 | 611449 |
+| ground truth | not curated at T0 as TAS/NAS/IC (propagated) | 120662 | 98132 | 22530 |
+| ground truth | strict subset (annotation date >= 2022-11-17) | 98132 | 83802 | 14330 |
 | gene2pubmed | taxon 9606, distinct links | 3348186 | 3348186 | 0 |
 | gene2pubmed | PMIDs with <= 100 human genes | 3348186 | 2521108 | 827078 |
 | gene2pubmed | PMID <= 36585753 | 2521108 | 2300403 | 220705 |
@@ -87,20 +87,20 @@
 | namespace | knowledge_type | stratum | proteins | proteins_strict |
 |---|---|---|---|---|
 | MF | LK | dark | 71 | 68 |
-| MF | LK | intermediate | 338 | 314 |
-| MF | LK | well-studied | 158 | 134 |
+| MF | LK | intermediate | 340 | 316 |
+| MF | LK | well-studied | 160 | 136 |
 | MF | NK | dark | 176 | 160 |
 | MF | NK | intermediate | 308 | 291 |
 | MF | NK | well-studied | 53 | 48 |
 | MF | PK | dark | 112 | 96 |
-| MF | PK | intermediate | 912 | 821 |
-| MF | PK | well-studied | 1058 | 971 |
+| MF | PK | intermediate | 910 | 819 |
+| MF | PK | well-studied | 1056 | 969 |
 | BP | LK | dark | 64 | 57 |
 | BP | LK | intermediate | 235 | 214 |
-| BP | LK | well-studied | 85 | 71 |
+| BP | LK | well-studied | 84 | 70 |
 | BP | NK | dark | 174 | 160 |
 | BP | NK | intermediate | 290 | 272 |
-| BP | NK | well-studied | 53 | 44 |
+| BP | NK | well-studied | 54 | 45 |
 | BP | PK | dark | 141 | 127 |
 | BP | PK | intermediate | 1199 | 1074 |
 | BP | PK | well-studied | 1363 | 1219 |
@@ -133,14 +133,15 @@
 | One protein per HPA gene | PASS | 18221 proteins |
 | T0 retained rows are taxon 9606 and UniProtKB | PASS | 118301 rows |
 | T1 retained rows are taxon 9606 and UniProtKB | PASS | 157491 rows |
-| T0 propagated sets closed under parents (all 12146 proteins) | PASS | 0 missing parent links |
+| T0 propagated sets closed under parents (all 12145 proteins) | PASS | 0 missing parent links |
 | T1 propagated sets closed under parents (all 13347 proteins) | PASS | 0 missing parent links |
 | Report mapped obsolete / alt_id / dropped T1 terms | PASS | T0 obsolete_replaced: 228 rows, 4 terms; T0 obsolete_unmapped: 6 rows, 3 terms; T1 absent: 1328 rows, 305 terms; T1 obsolete_replaced: 3 rows, 2 terms; T1 obsolete_unmapped: 24 rows, 4 terms |
 | No ground-truth term existed at T0 (after propagation) | PASS | 0 overlapping |
 | NK/LK/PK mutually exclusive per protein and namespace | PASS | 0 conflicts |
 | No root terms in ground truth | PASS | 0 root rows |
+| No protein binding / binding in T0 annotations or ground truth | PASS | 0 rows |
 | No empty ground-truth sets | PASS | 0 empty |
-| No NK protein is absent from the T0 GAF (scope check) | PASS | 0 of 1119 NK proteins absent |
+| No NK protein is absent from the T0 GAF (scope check) | PASS | 0 of 1120 NK proteins absent |
 | PMID boundary entry date on or before 2022-12-31 | PASS | PMID 36585753, Entrez date 2022/12/30 23:53 |
 | Proteins without GeneID get no stratum | PASS | 25 of 18221 (0.1%) unmapped |
 | Spot-check genes found | PASS | TP53, BRCA1, LYSET |

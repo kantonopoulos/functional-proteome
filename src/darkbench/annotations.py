@@ -132,6 +132,6 @@ def filter_annotations(
     steps.add(label, "accession mapping", before, len(df))
     df = steps.filter(df, label, "Swiss-Prot universe", df["accession"].isin(universe))
     df = steps.filter(df, label, "sequence filter", df["accession"].isin(sequence_ok))
-    df = steps.filter(df, label, "HPA v22 gene set and same-gene filter",
+    df = steps.filter(df, label, "protein universe (HPA v22, in T0 GAF, not Ig/TR)",
                       df["accession"].isin(final_ok))
     return df, mapping_stats

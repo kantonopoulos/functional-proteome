@@ -82,14 +82,14 @@ def map_terms(annotations: pd.DataFrame, onto: Ontology) -> tuple[pd.DataFrame, 
 
 
 def propagate(annotations: pd.DataFrame, onto: Ontology) -> pd.DataFrame:
-    """Close each protein's terms under is_a/part_of parents; drop roots afterwards."""
+    """Close each protein's terms under is_a/part_of parents; drop roots and uninformative terms."""
     pairs = annotations[["accession", "go_id"]].drop_duplicates()
     rows: list[tuple[str, str]] = []
     for accession, terms in pairs.groupby("accession")["go_id"]:
         closed: set[str] = set(terms)
         for term in terms:
             closed |= onto.ancestors(term)
-        rows.extend((accession, t) for t in closed if t not in config.ROOT_TERMS)
+        rows.extend((accession, t) for t in closed if t not in config.DROPPED_AFTER_PROPAGATION)
     out = pd.DataFrame(rows, columns=["accession", "go_id"])
     out.insert(1, "namespace", out["go_id"].map(onto.namespace))
     return out.sort_values(["accession", "namespace", "go_id"]).reset_index(drop=True)
@@ -101,5 +101,5 @@ def unclosed_terms(propagated: pd.DataFrame, onto: Ontology) -> int:
     for _, terms in propagated.groupby("accession")["go_id"]:
         present = set(terms)
         for term in present:
-            missing += len(onto.parents(term) - present - set(config.ROOT_TERMS))
+            missing += len(onto.parents(term) - present - config.DROPPED_AFTER_PROPAGATION)
     return missing
