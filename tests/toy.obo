@@ -1,0 +1,75 @@
+format-version: 1.2
+data-version: releases/toy
+
+[Term]
+id: GO:0003674
+name: molecular_function
+namespace: molecular_function
+
+[Term]
+id: GO:0000001
+name: mf parent
+namespace: molecular_function
+is_a: GO:0003674
+
+[Term]
+id: GO:0000002
+name: mf child
+namespace: molecular_function
+alt_id: GO:0000099
+is_a: GO:0000001
+
+[Term]
+id: GO:0008150
+name: biological_process
+namespace: biological_process
+
+[Term]
+id: GO:0000010
+name: bp parent
+namespace: biological_process
+is_a: GO:0008150
+
+[Term]
+id: GO:0000011
+name: bp is_a child
+namespace: biological_process
+is_a: GO:0000010
+
+[Term]
+id: GO:0000012
+name: bp part_of child
+namespace: biological_process
+is_a: GO:0008150
+relationship: part_of GO:0000010
+
+[Term]
+id: GO:0000013
+name: bp regulator
+namespace: biological_process
+is_a: GO:0008150
+relationship: regulates GO:0000012
+
+[Term]
+id: GO:0005575
+name: cellular_component
+namespace: cellular_component
+
+[Term]
+id: GO:0000020
+name: cc term
+namespace: cellular_component
+is_a: GO:0005575
+
+[Term]
+id: GO:0000098
+name: obsolete replaced
+namespace: biological_process
+is_obsolete: true
+replaced_by: GO:0000011
+
+[Term]
+id: GO:0000097
+name: obsolete without replacement
+namespace: biological_process
+is_obsolete: true
