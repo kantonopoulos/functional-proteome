@@ -93,9 +93,12 @@ def pipeline_difference_section(delta: pd.DataFrame, t0: pd.DataFrame, t0_goa: d
     )
 
 
-def nk_origin(t0_raw: pd.DataFrame, sec_map: dict[str, str], nk: set[str],
-              dark: set[str]) -> pd.DataFrame:
-    """Why each NK protein had no T0 experimental annotation after filtering."""
+def nk_origin(t0_raw: pd.DataFrame, sec_map: dict[str, str], nk: set[str]) -> pd.Series:
+    """Why each NK protein had no T0 experimental annotation after filtering.
+
+    none: no experimental row at all; binding: protein binding / binding only; hpa: HPA-derived
+    only; other: obsolete or root terms. Combinations are joined with "+".
+    """
     df = t0_raw[(t0_raw["db"] == "UniProtKB")
                 & t0_raw["evidence"].isin(config.evidence_codes())
                 & ~t0_raw["qualifier"].map(annotations.is_negated)]
@@ -104,13 +107,17 @@ def nk_origin(t0_raw: pd.DataFrame, sec_map: dict[str, str], nk: set[str],
     df = df[df["accession"].isin(nk)]
     excluded_ref = df["reference"].map(
         lambda r: bool(set(r.split("|")) & set(config.EXCLUDED_REFERENCES)))
-    reason = pd.Series("other (obsolete or root term only)", index=df.index)
-    reason[df["go_id"].isin(config.UNINFORMATIVE_TERMS)] = "protein binding / binding"
-    reason[excluded_ref] = "HPA-derived"
-    reasons = reason.groupby(df["accession"]).apply(lambda r: " + ".join(sorted(set(r))))
-    origin = pd.Series({a: reasons.get(a, "no experimental annotation") for a in nk})
-    table = pd.DataFrame({"origin": origin, "dark": origin.index.isin(dark)})
-    return (table.groupby("origin").agg(nk_proteins=("dark", "size"), dark=("dark", "sum"))
+    reason = pd.Series("other", index=df.index)
+    reason[df["go_id"].isin(config.UNINFORMATIVE_TERMS)] = "binding"
+    reason[excluded_ref] = "hpa"
+    reasons = reason.groupby(df["accession"]).apply(lambda r: "+".join(sorted(set(r))))
+    return pd.Series({a: reasons.get(a, "none") for a in nk}, name="nk_origin")
+
+
+def nk_origin_table(gt: pd.DataFrame, dark: set[str]) -> pd.DataFrame:
+    nk = gt[gt["knowledge_type"] == "NK"].drop_duplicates("accession")
+    table = nk.assign(dark=nk["accession"].isin(dark))
+    return (table.groupby("nk_origin").agg(nk_proteins=("dark", "size"), dark=("dark", "sum"))
             .sort_values("nk_proteins", ascending=False).reset_index())
 
 
@@ -266,8 +273,10 @@ def main() -> None:
     table["tdl_source"] = manifest["pharos_tdl"]["release"]
     table = pd.concat([table, ground_truth.has_exp_t0(t0_prop, table["accession"])], axis=1)
 
-    nk_table = nk_origin(t0_raw, sec_map, set(gt.loc[gt["knowledge_type"] == "NK", "accession"]),
-                         set(table.loc[table["stratum"] == "dark", "accession"]))
+    # Reported dimension, not a filter: NK keeps the CAFA-style definition.
+    origins = nk_origin(t0_raw, sec_map, set(gt.loc[gt["knowledge_type"] == "NK", "accession"]))
+    gt["nk_origin"] = gt["accession"].map(origins).where(gt["knowledge_type"] == "NK")
+    nk_table = nk_origin_table(gt, set(table.loc[table["stratum"] == "dark", "accession"]))
     print(nk_table.to_string(index=False))
     spot = spot_check(table)
     print(spot.to_string(index=False))

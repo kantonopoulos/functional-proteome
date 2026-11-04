@@ -195,13 +195,13 @@
 
 ## Origin of NK proteins (only T0 experimental annotations)
 
-| origin | nk_proteins | dark |
+| nk_origin | nk_proteins | dark |
 |---|---|---|
-| protein binding / binding | 455 | 173 |
-| no experimental annotation | 401 | 171 |
-| HPA-derived + protein binding / binding | 160 | 44 |
-| HPA-derived | 87 | 22 |
-| other (obsolete or root term only) + protein binding / binding | 1 | 0 |
+| binding | 455 | 173 |
+| none | 401 | 171 |
+| binding+hpa | 160 | 44 |
+| hpa | 87 | 22 |
+| binding+other | 1 | 0 |
 
 ## Proteins without a GeneID mapping (no stratum)
 

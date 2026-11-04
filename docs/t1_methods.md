@@ -305,18 +305,23 @@ Unique proteins per knowledge type (in any namespace): NK 1,104 (410 dark), LK 1
 
 ### 9.1 What NK means in practice
 
-NK means "no experimental annotation **left after filtering** at T0". Because of the filters, NK includes proteins that did have experimental annotations at T0, but only of kinds the benchmark does not count as knowledge. `nk_origin` in `scripts/build_t1.py` goes back to the T0 GAF rows (allowed evidence codes, not negated) of every NK protein and classifies why they did not survive:
+NK means "no experimental annotation **left after filtering** at T0". Because of the filters, NK includes proteins that did have experimental annotations at T0, but only of kinds the benchmark does not count as knowledge. `nk_origin` in `scripts/build_t1.py` goes back to the T0 GAF rows (allowed evidence codes, not negated) of every NK protein and classifies why they did not survive. The result is the `nk_origin` column in `ground_truth_t1.tsv` (codes in brackets; empty for LK and PK):
 
 | Origin of NK protein | NK proteins | of which dark |
 |---|---|---|
-| Only protein binding / binding (GO:0005515, GO:0005488) | 455 | 173 |
-| No experimental annotation at all | 401 | 171 |
-| HPA-derived plus protein binding / binding only | 160 | 44 |
-| Only HPA-derived (localization) | 87 | 22 |
-| Obsolete or root term plus protein binding only | 1 | 0 |
+| Only protein binding / binding (GO:0005515, GO:0005488) (`binding`) | 455 | 173 |
+| No experimental annotation at all (`none`) | 401 | 171 |
+| HPA-derived plus protein binding / binding only (`binding+hpa`) | 160 | 44 |
+| Only HPA-derived (localization) (`hpa`) | 87 | 22 |
+| Obsolete or root term plus protein binding only (`binding+other`) | 1 | 0 |
 | **Total** | **1,104** | **410** |
 
-So only 36% of NK proteins (401) had no experimental annotation of any kind at T0. The other 64% had only "binds protein X" (an IPI to protein binding) and/or an HPA localization. Both follow from deliberate decisions: protein binding is uninformative (README), and HPA data is excluded to avoid overlap with T2 and leakage (5.3). They matter for interpreting results. Prediction tasks with an NK protein whose only T0 knowledge was a single interaction are not the same as ones on a truly uncharacterised protein. A per-origin breakdown of results (or restricting to the 401) is the natural answer if a reviewer asks; the table is in the report.
+So only 36% of NK proteins (401) had no experimental annotation of any kind at T0. The other 64% had only "binds protein X" (an IPI to protein binding) and/or an HPA localization. Both follow from deliberate decisions: protein binding is uninformative (README), and HPA data is excluded to avoid overlap with T2 and leakage (5.3). They matter for interpreting results. Prediction tasks with an NK protein whose only T0 knowledge was a single interaction are not the same as ones on a truly uncharacterised protein. The table is also in the report.
+
+**How origin is used (user decision).** NK keeps the definition above for the main results, because it matches how CAFA counts function knowledge. Origin is a reported dimension, not a filter:
+- **Main results:** all 1,104 NK proteins.
+- **Robustness of the headline dark-protein claim:** repeat it on `nk_origin == "none"` (401 proteins, 171 dark). If the claim holds there, it is robust. If not, the difference is a finding in itself (for example, "interaction data is what rescues dark proteins"). The 171 dark proteins are below the go/no-go threshold of 200 on their own, so treat this as a robustness check, not as a test set in its own right.
+- **Bridge to T2:** the 247 NK proteins whose T0 knowledge included an HPA localization (`hpa` 87 + `binding+hpa` 160; 66 dark). In T2 that localization is the input.
 
 ---
 
@@ -345,7 +350,7 @@ Result: 5 passed.
 |---|---|---|
 | `proteins.tsv` | 18,221 | accession, gene, entrez_id (`;`-joined if several), pmid_count_t0, stratum, tdl, tdl_source, has_exp_t0_mf/bp/cc |
 | `annotations_t0.tsv` | 665,071 | accession, namespace, go_id: the propagated T0 training signal |
-| `ground_truth_t1.tsv` | 97,946 | accession, namespace, go_id, knowledge_type, strict |
+| `ground_truth_t1.tsv` | 97,946 | accession, namespace, go_id, knowledge_type, strict, nk_origin |
 | `test_set_summary.tsv` | 27 | namespace, knowledge_type, stratum, proteins, proteins_strict |
 | `provenance.json` | | every source (URL, md5, release, download date), GAF headers, ontology version, PMID boundary, accession-mapping stats, the full config, build date |
 
@@ -374,6 +379,7 @@ The report is in `reports/t1_report.md`.
 | 15 | PMID boundary: largest PMID with a verified Entrez date on or before the cutoff | Claude (bug fix found by a check) | `[EDAT]` matches back-dated records added later |
 | 16 | UniProt flat file instead of TSV | Claude | The TSV export lacks secondary accessions |
 | 17 | Current Pharos TDL, labelled post-T0 | README fallback | Pre-T0 TCRD not obtainable |
+| 18 | Keep the CAFA-style NK definition; add `nk_origin` as a reported dimension | User | Main results on all NK; robustness on `none`; HPA-origin NK bridges to T2 |
 
 ---
 
