@@ -1,6 +1,7 @@
 import gzip
 import logging
 import re
+import zipfile
 from datetime import date, datetime
 from pathlib import Path
 
@@ -61,6 +62,23 @@ def sequence_filter(universe: pd.DataFrame, t0: date) -> pd.DataFrame:
     keep = universe["sequence_date"] <= t0
     log.info("sequence filter (last modified <= %s): %d -> %d", t0, len(universe), int(keep.sum()))
     return universe[keep].reset_index(drop=True)
+
+
+def hpa_first_accessions(path: Path, secondary_to_primary: dict[str, str]) -> set[str]:
+    """First UniProt accession of each HPA gene, mapped to current primary accessions."""
+    with zipfile.ZipFile(path) as archive:
+        hpa = pd.read_csv(archive.open("proteinatlas.tsv"), sep="\t", usecols=["Gene", "Uniprot"])
+    # One protein per gene (user decision): HPA lists the gene's main product first, and
+    # dropping further products removes same-gene duplicates missing from goa_human at T0.
+    first = hpa["Uniprot"].dropna().map(lambda ids: ids.split(",")[0].strip())
+    log.info("HPA v22 genes: %d, with UniProt: %d", len(hpa), len(first))
+    return {secondary_to_primary.get(a, a) for a in first}
+
+
+def hpa_filter(proteins: pd.DataFrame, hpa_ids: set[str]) -> pd.DataFrame:
+    keep = proteins["accession"].isin(hpa_ids)
+    log.info("HPA v22 first UniProt per gene: %d -> %d", len(proteins), int(keep.sum()))
+    return proteins[keep].reset_index(drop=True)
 
 
 def secondary_map(universe: pd.DataFrame) -> tuple[dict[str, str], set[str]]:

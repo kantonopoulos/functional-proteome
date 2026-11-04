@@ -31,6 +31,8 @@ URLS = {
         "https://rest.uniprot.org/uniprotkb/search?compressed=true&format=txt&size=500"
         "&query=%28organism_id%3A9606%29+AND+%28reviewed%3Atrue%29"
     ),
+    # HPA v22 (Dec 2022) defines the protein-coding gene set as of T0 (user decision).
+    "hpa_v22": "https://v22.proteinatlas.org/download/proteinatlas.tsv.zip",
     "pharos_graphql": "https://pharos-api.ncats.io/graphql",
     "eutils": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils",
 }
@@ -41,6 +43,7 @@ RAW_FILES = {
     "go_obo_t0": "go-basic_2023-01-01.obo",
     "gene2pubmed": "gene2pubmed.gz",
     "uniprot_sprot_human": "uniprot_sprot_human.txt.gz",
+    "hpa_v22": "proteinatlas_v22.tsv.zip",
     "pharos_tdl": "pharos_tdl.tsv",
     "pmid_boundary": "pmid_boundary.json",
 }

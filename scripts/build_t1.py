@@ -20,6 +20,8 @@ def check_sources(manifest: dict, checks: Checks) -> tuple[dict, dict]:
         path = config.RAW_DIR / entry["file"]
         if path.suffix == ".gz":
             checks.add(f"gzip opens: {entry['file']}", download.gzip_opens(path), f"md5 {entry['md5']}")
+        elif path.suffix == ".zip":
+            checks.add(f"zip opens: {entry['file']}", download.zip_opens(path), f"md5 {entry['md5']}")
     t0_header = annotations.read_gaf_header(config.RAW_DIR / config.RAW_FILES["gaf_t0"])
     t1_header = annotations.read_gaf_header(config.RAW_DIR / config.RAW_FILES["gaf_t1"])
     for label, header in [("T0", t0_header), ("T1", t1_header)]:
@@ -53,6 +55,23 @@ def load_gaf(key: str, version: str, label: str, checks: Checks) -> pd.DataFrame
 def raw_t0_accessions(gaf: pd.DataFrame, sec_map: dict[str, str]) -> set[str]:
     ids = gaf.loc[gaf["db"] == "UniProtKB", "db_object_id"].map(proteins.canonical_accession)
     return {sec_map.get(i, i) for i in ids}
+
+
+def same_gene_as_t0_protein(accessions: list[str], t0_gaf: pd.DataFrame,
+                            sec_map: dict[str, str], universe: pd.DataFrame) -> list[str]:
+    """Accessions sharing a GeneID or gene symbol with a protein present in the T0 GAF."""
+    t0_ids = raw_t0_accessions(t0_gaf, sec_map)
+    t0_symbols = set(t0_gaf["db_object_symbol"])
+    by_accession = universe.set_index("accession")
+    gene_to_accessions: dict[str, set[str]] = {}
+    for accession, entrez_ids in zip(universe["accession"], universe["entrez_ids"]):
+        for gene_id in entrez_ids:
+            gene_to_accessions.setdefault(gene_id, set()).add(accession)
+    return [
+        a for a in accessions
+        if by_accession.loc[a, "gene"] in t0_symbols
+        or any((gene_to_accessions[g] - {a}) & t0_ids for g in by_accession.loc[a, "entrez_ids"])
+    ]
 
 
 def map_and_propagate(df: pd.DataFrame, label: str, onto: ontology.Ontology,
@@ -106,6 +125,10 @@ def main() -> None:
     kept = proteins.sequence_filter(universe, config.T0_DATE)
     steps.add("proteins", "sequence last modified <= 2023-01-01", len(universe), len(kept))
     sec_map, ambiguous = proteins.secondary_map(universe)
+    hpa_ids = proteins.hpa_first_accessions(config.RAW_DIR / config.RAW_FILES["hpa_v22"], sec_map)
+    final = proteins.hpa_filter(kept, hpa_ids)
+    steps.add("proteins", "HPA v22 first UniProt per gene", len(kept), len(final))
+    checks.add("One protein per HPA gene", final["accession"].is_unique, f"{len(final)} proteins")
     universe_ids, kept_ids = set(universe["accession"]), set(kept["accession"])
 
     # 2. Parse and filter annotations
@@ -114,7 +137,7 @@ def main() -> None:
     filtered, mapping_stats = {}, {}
     for label, raw in [("T0", t0_raw), ("T1", t1_raw)]:
         filtered[label], mapping_stats[label] = annotations.filter_annotations(
-            raw, label, steps, sec_map, ambiguous, universe_ids, kept_ids)
+            raw, label, steps, sec_map, ambiguous, universe_ids, kept_ids, hpa_ids)
         df = filtered[label]
         checks.add(f"{label} retained rows are taxon 9606 and UniProtKB",
                    bool((df["db"] == "UniProtKB").all()
@@ -149,13 +172,15 @@ def main() -> None:
     checks.add("No root terms in ground truth", n == 0, f"{n} root rows")
     n = ground_truth.check_no_empty_sets(gt)
     checks.add("No empty ground-truth sets", n == 0, f"{n} empty")
-    # The T0 file covers the reference proteome only; a protein missing from it entirely
-    # would look NK because of file scope rather than knowledge.
+    # goa_human keeps one protein per gene, so a second product of a gene is missing at T0
+    # and would look NK because of file scope rather than knowledge.
     nk = set(gt.loc[gt["knowledge_type"] == "NK", "accession"])
     absent = sorted(nk - raw_t0_accessions(t0_raw, sec_map))
-    checks.add("NK proteins present in the T0 GAF with any evidence (scope check)",
-               len(absent) == 0, f"{len(absent)} of {len(nk)} NK proteins absent from T0 file: "
-               + ", ".join(absent[:30]))
+    artifacts = same_gene_as_t0_protein(absent, t0_raw, sec_map, universe)
+    checks.add("No NK protein is a same-gene product missing from the T0 GAF (scope check)",
+               len(artifacts) == 0,
+               f"{len(artifacts)} artifacts {artifacts}; {len(absent)} of {len(nk)} NK proteins "
+               f"absent from T0 file without a same-gene T0 protein: {', '.join(absent)}")
 
     # 5. Literature strata
     boundary = literature.find_pmid_boundary(config.PMID_CUTOFF_DATE)
@@ -166,9 +191,9 @@ def main() -> None:
     g2p = literature.read_gene2pubmed(config.RAW_DIR / config.RAW_FILES["gene2pubmed"])
     gene_counts = literature.paper_counts(g2p, boundary["pmid_boundary"], steps)
 
-    table = kept[["accession", "gene"]].copy()
-    table["entrez_id"] = kept["entrez_ids"].map(";".join)
-    table["pmid_count_t0"] = literature.protein_paper_counts(kept, gene_counts).astype("Int64")
+    table = final[["accession", "gene"]].copy()
+    table["entrez_id"] = final["entrez_ids"].map(";".join)
+    table["pmid_count_t0"] = literature.protein_paper_counts(final, gene_counts).astype("Int64")
     table["stratum"] = table["pmid_count_t0"].map(literature.stratum)
     unmapped = table[table["entrez_id"] == ""]
     share = len(unmapped) / len(table)
@@ -235,7 +260,9 @@ def main() -> None:
         f"T0 GOA release is {(config.T0_DATE - date.fromisoformat(t0_header['goa_date_generated'][:10])).days} "
         "days before T0, over the 6-week limit; accepted by the user.",
         "T0 file covers the UniProt reference proteome (goa_human); T1 file covers all UniProt "
-        "human entries. Both are restricted to the same Swiss-Prot universe; see the scope check.",
+        "human entries. Both are restricted to the same protein universe; see the scope check.",
+        "Protein universe restricted to the first UniProt entry of each HPA v22 gene (protein-coding, "
+        "one protein per gene; user decision). This removes same-gene products missing from goa_human.",
         "Proteins with several GeneIDs take the max paper count over their GeneIDs (user decision).",
         "Secondary accessions that map to several current entries are dropped (user decision): "
         f"T0 {mapping_stats['T0']['ambiguous_accessions_dropped']}, "

@@ -2,6 +2,7 @@ import gzip
 import hashlib
 import json
 import logging
+import zipfile
 from datetime import date
 from pathlib import Path
 
@@ -50,6 +51,14 @@ def gzip_opens(path: Path) -> bool:
                 pass
         return True
     except (OSError, EOFError):
+        return False
+
+
+def zip_opens(path: Path) -> bool:
+    try:
+        with zipfile.ZipFile(path) as archive:
+            return archive.testzip() is None
+    except zipfile.BadZipFile:
         return False
 
 
@@ -133,7 +142,7 @@ def download_pharos(manifest: dict, page_size: int = 1000) -> Path:
 def download_all() -> dict:
     config.RAW_DIR.mkdir(parents=True, exist_ok=True)
     manifest = load_manifest()
-    for name in ["gaf_t0", "gaf_t1", "go_obo_t0", "gene2pubmed", "uniprot_sprot_human"]:
+    for name in ["gaf_t0", "gaf_t1", "go_obo_t0", "gene2pubmed", "uniprot_sprot_human", "hpa_v22"]:
         download_file(name, manifest)
         save_manifest(manifest)
     download_pharos(manifest)
