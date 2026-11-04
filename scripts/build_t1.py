@@ -146,8 +146,10 @@ def main() -> None:
               len(kept), len(in_hpa))
     # Absence from goa_human means "outside the file's scope", not "no annotations", so a
     # protein missing from the T0 file has an unknown T0 state and cannot be labelled NK.
-    final = proteins.keep_accessions(in_hpa, t0_ids)
-    steps.add("proteins", "present in the T0 GAF (any evidence)", len(in_hpa), len(final))
+    in_t0 = proteins.keep_accessions(in_hpa, t0_ids)
+    steps.add("proteins", "present in the T0 GAF (any evidence)", len(in_hpa), len(in_t0))
+    segment = in_t0["gene"].fillna("").str.match(config.IG_TR_SEGMENT_PATTERN)
+    final = steps.filter(in_t0, "proteins", "not an Ig/TR gene segment", ~segment)
     checks.add("One protein per HPA gene", final["accession"].is_unique, f"{len(final)} proteins")
     final_ids = set(final["accession"])
 
@@ -182,6 +184,13 @@ def main() -> None:
     # 4. Ground truth
     gt = ground_truth.build_ground_truth(t0_prop, t1_prop)
     steps.add("ground truth", "T1 propagated pairs -> new at T1", len(t1_prop), len(gt))
+    # IEA/ISS pairs stay: confirming a prediction is what the benchmark should reward.
+    curated, _ = ontology.map_terms(
+        annotations.curated_statements(t0_raw, sec_map, final_ids), onto)
+    curated_prop = ontology.propagate(curated, onto)
+    before = len(gt)
+    gt = ground_truth.drop_known_pairs(gt, curated_prop)
+    steps.add("ground truth", "not curated at T0 as TAS/NAS/IC (propagated)", before, len(gt))
     n = ground_truth.check_no_t0_terms(gt, t0_prop)
     checks.add("No ground-truth term existed at T0 (after propagation)", n == 0, f"{n} overlapping")
     n = ground_truth.check_exclusive_types(gt)
@@ -197,6 +206,12 @@ def main() -> None:
     delta = delta_rows(filtered["T1"], t0_prop, onto)
     t0_goa = date.fromisoformat(t0_header["goa_date_generated"][:10])
     pipeline_section = pipeline_difference_section(delta, filtered["T0"], t0_goa)
+    # Sensitivity subset: rows dated before the T0 GOA release may be pipeline differences
+    # between the T0 and T1 files rather than new knowledge.
+    recent = delta[pd.to_datetime(delta["date"], format="%Y%m%d") >= pd.Timestamp(t0_goa)]
+    gt = ground_truth.flag_strict(gt, ontology.propagate(recent, onto))
+    steps.add("ground truth", f"strict subset (annotation date >= {t0_goa})",
+              len(gt), int(gt["strict"].sum()))
 
     # 5. Literature strata
     boundary = literature.find_pmid_boundary(config.PMID_CUTOFF_DATE)
@@ -237,17 +252,23 @@ def main() -> None:
     gt.to_csv(config.PROCESSED_DIR / "ground_truth_t1.tsv", sep="\t", index=False)
     t0_prop.to_csv(config.PROCESSED_DIR / "annotations_t0.tsv", sep="\t", index=False)
     table.to_csv(config.PROCESSED_DIR / "proteins.tsv", sep="\t", index=False)
-    summary = summarise(gt, table[["accession", "stratum"]])
+    summary = summarise(gt, table[["accession", "stratum"]]).merge(
+        summarise(gt[gt["strict"]], table[["accession", "stratum"]])
+        .rename(columns={"proteins": "proteins_strict"}),
+        on=["namespace", "knowledge_type", "stratum"], how="left")
+    summary["proteins_strict"] = summary["proteins_strict"].fillna(0).astype(int)
     summary.to_csv(config.PROCESSED_DIR / "test_set_summary.tsv", sep="\t", index=False)
 
     dark = set(table.loc[table["stratum"] == "dark", "accession"])
     nk_lk = gt[gt["knowledge_type"].isin(["NK", "LK"])]
     # Unique proteins: summing over namespaces counts a protein up to three times.
     dark_nk_lk = len(set(nk_lk["accession"]) & dark)
+    dark_nk_lk_strict = len(set(nk_lk.loc[nk_lk["strict"], "accession"]) & dark)
     dark_pairs = len(nk_lk[nk_lk["accession"].isin(dark)][["accession", "namespace"]].drop_duplicates())
     verdict = "GO" if dark_nk_lk >= config.GO_NO_GO_MIN_DARK_NK_LK else "NO-GO FLAG"
     go_no_go = (f"> **{verdict}: {dark_nk_lk} unique dark proteins in NK+LK in any namespace "
-                f"(threshold {config.GO_NO_GO_MIN_DARK_NK_LK}); {dark_pairs} protein-namespace pairs.**")
+                f"(threshold {config.GO_NO_GO_MIN_DARK_NK_LK}); {dark_pairs} protein-namespace pairs; "
+                f"{dark_nk_lk_strict} unique in the strict subset.**")
 
     provenance = {
         "sources": manifest,
@@ -283,6 +304,13 @@ def main() -> None:
         "Protein universe: one UniProt entry per HPA v22 gene (user decision). HPA lists accessions "
         "alphabetically, so the entry present in the T0 GAF is preferred, else the first listed. "
         "Proteins absent from the T0 GAF are dropped: their T0 state is unknown (user decision).",
+        "Ig/TR V/D/J/C gene segments are excluded: they are not proteins with their own function "
+        "(user decision).",
+        "Ground-truth pairs already curated at T0 as TAS/NAS/IC (after propagation) are removed: "
+        "an evidence upgrade is not a discovery. Pairs known only as IEA/ISS are kept (user decision).",
+        f"`strict` column in ground_truth_t1.tsv: pair supported by a T1 row dated on or after "
+        f"{t0_header['goa_date_generated'][:10]}. Report results on the full set and the strict "
+        "subset (sensitivity analysis; user decision).",
         f"Annotations with references {config.EXCLUDED_REFERENCES} (HPA immunofluorescence) are "
         "removed from T0 and T1: they overlap with T2 and leak into models using HPA image features.",
         f"GeneIDs missing from UniProt were recovered for {len(recovered)} proteins via HPA Ensembl ID "

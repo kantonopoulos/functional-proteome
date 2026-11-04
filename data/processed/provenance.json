@@ -14,6 +14,13 @@
       "md5": "f74b40c53bdf8ed39d300a491eaf852d",
       "url": "https://release.geneontology.org/2026-08-05/annotations/gaf/HUMAN-uniprot.gaf.gz"
     },
+    "gene2ensembl": {
+      "bytes": 316665494,
+      "download_date": "2026-11-04",
+      "file": "gene2ensembl.gz",
+      "md5": "8ed7ecf8c9d560fd9fe2e0e9f9fbdebd",
+      "url": "https://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2ensembl.gz"
+    },
     "gene2pubmed": {
       "bytes": 290725245,
       "download_date": "2026-11-04",
@@ -49,13 +56,6 @@
       "file": "uniprot_sprot_human.txt.gz",
       "md5": "cdfe580d07365aeb32dc4f2bec06bc6d",
       "url": "https://rest.uniprot.org/uniprotkb/search?compressed=true&format=txt&size=500&query=%28organism_id%3A9606%29+AND+%28reviewed%3Atrue%29"
-    },
-    "gene2ensembl": {
-      "file": "gene2ensembl.gz",
-      "url": "https://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2ensembl.gz",
-      "md5": "8ed7ecf8c9d560fd9fe2e0e9f9fbdebd",
-      "bytes": 316665494,
-      "download_date": "2026-11-04"
     }
   },
   "gaf_headers": {
@@ -316,6 +316,12 @@
       "HEP"
     ],
     "INCLUDE_HTP": false,
+    "CURATED_STATEMENT_CODES": [
+      "TAS",
+      "NAS",
+      "IC"
+    ],
+    "IG_TR_SEGMENT_PATTERN": "^(IG[HKL][VDJC]|TR[ABDG][VDJC])",
     "PROTEIN_BINDING": "GO:0005515",
     "EXCLUDED_REFERENCES": [
       "GO_REF:0000052"

@@ -98,6 +98,17 @@ def map_accessions(
     return out[~is_ambiguous].reset_index(drop=True), stats
 
 
+def curated_statements(gaf: pd.DataFrame, secondary_to_primary: dict[str, str],
+                       accessions: set[str]) -> pd.DataFrame:
+    """T0 rows asserted by authors or curators (TAS/NAS/IC), not negated, on kept proteins."""
+    df = gaf[(gaf["db"] == "UniProtKB")
+             & gaf["evidence"].isin(config.CURATED_STATEMENT_CODES)
+             & ~gaf["qualifier"].map(is_negated)]
+    canonical = df["db_object_id"].map(canonical_accession)
+    df = df.assign(accession=canonical.map(lambda a: secondary_to_primary.get(a, a)))
+    return df[df["accession"].isin(accessions)].reset_index(drop=True)
+
+
 def filter_annotations(
     gaf: pd.DataFrame,
     label: str,

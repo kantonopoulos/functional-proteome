@@ -54,6 +54,12 @@ EVIDENCE_CODES = ["EXP", "IDA", "IPI", "IMP", "IGI", "IEP"]
 HTP_EVIDENCE_CODES = ["HTP", "HDA", "HMP", "HGI", "HEP"]
 INCLUDE_HTP = False
 
+# Author/curator statements: a pair already asserted at T0 this way was curated knowledge,
+# so an upgrade to experimental evidence at T1 is not a discovery.
+CURATED_STATEMENT_CODES = ["TAS", "NAS", "IC"]
+# Ig/TR V/D/J/C gene segments are not proteins with their own function.
+IG_TR_SEGMENT_PATTERN = r"^(IG[HKL][VDJC]|TR[ABDG][VDJC])"
+
 PROTEIN_BINDING = "GO:0005515"
 # HPA immunofluorescence curated into GO. Removed from both snapshots because it overlaps
 # with T2 and would leak into any model that uses HPA image features.

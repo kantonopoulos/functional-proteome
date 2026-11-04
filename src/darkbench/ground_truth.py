@@ -27,6 +27,20 @@ def build_ground_truth(t0: pd.DataFrame, t1: pd.DataFrame) -> pd.DataFrame:
     return new.sort_values(["accession", "namespace", "go_id"]).reset_index(drop=True)
 
 
+def drop_known_pairs(ground_truth: pd.DataFrame, known: pd.DataFrame) -> pd.DataFrame:
+    """Remove ground-truth (protein, term) pairs present in a propagated T0 table."""
+    pairs = set(zip(known["accession"], known["go_id"]))
+    keep = [(a, g) not in pairs for a, g in zip(ground_truth["accession"], ground_truth["go_id"])]
+    return ground_truth[keep].reset_index(drop=True)
+
+
+def flag_strict(ground_truth: pd.DataFrame, recent: pd.DataFrame) -> pd.DataFrame:
+    """Flag pairs supported by a T1 row dated on or after the T0 GOA release (propagated)."""
+    pairs = set(zip(recent["accession"], recent["go_id"]))
+    flags = [(a, g) in pairs for a, g in zip(ground_truth["accession"], ground_truth["go_id"])]
+    return ground_truth.assign(strict=flags)
+
+
 def check_no_t0_terms(ground_truth: pd.DataFrame, t0: pd.DataFrame) -> int:
     overlap = ground_truth.merge(t0, on=["accession", "namespace", "go_id"])
     return len(overlap)

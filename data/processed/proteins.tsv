@@ -381,10 +381,7 @@ P01270	PTH	5741	317	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-
 P01275	GCG	2641	323	well-studied	Tchem	Pharos dbVersion pharos319 (current, post-T0)	True	False	False
 P01308	INS	3630	961	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
 P01579	IFNG	3458	3194	well-studied	Tclin	Pharos dbVersion pharos319 (current, post-T0)	False	True	True
-P01597	IGKV1-39	28930	7	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01615	IGKV2D-28	28883	7	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P01732	CD8A	925	149	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
-P01764	IGHV3-23	28442	12	intermediate	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P01909	HLA-DQA1	3117	811	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P02452	COL1A1	1277	784	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
 P02511	CRYAB	1410	449	well-studied	Tchem	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
@@ -652,7 +649,6 @@ P22674	CCNO	10309	79	intermediate	Tbio	Pharos dbVersion pharos319 (current, post
 P22732	SLC2A5	6518	90	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
 P22735	TGM1	7051	124	well-studied	Tchem	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
 P22897	MRC1	4360	148	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
-P23083	IGHV1-2	28474	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P23193	TCEA1	6917	42	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	True
 P23409	MYF6	4618	13	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	False	False
 P23416	GLRA2	2742	29	intermediate	Tchem	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
@@ -3143,8 +3139,6 @@ P01570	IFNA14	3448	63	intermediate	Tbio	Pharos dbVersion pharos319 (current, pos
 P01574	IFNB1	3456	457	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	False
 P01583	IL1A	3552	1200	well-studied	Tchem	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
 P01584	IL1B	3553	5141	well-studied	Tclin	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
-P01593	IGKV1D-33	28896	18	intermediate	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01594	IGKV1-33	28933	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	True	False	False
 P01730	CD4	920	1992	well-studied	Tclin	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
 P01903	HLA-DRA	3122	280	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
 P02008	HBZ	3050	30	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	True	True
@@ -3184,7 +3178,6 @@ P05423	POLR3D	661	19	intermediate	Tbio	Pharos dbVersion pharos319 (current, post
 P05496	ATP5MC1	516	21	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	True
 P05783	KRT18	3875	417	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
 P05937	CALB1	793	255	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
-P06312	IGKV4-1	28908	7	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P06401	PGR	5241	761	well-studied	Tclin	Pharos dbVersion pharos319 (current, post-T0)	True	True	False
 P06576	ATP5F1B	506	165	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
 P06702	S100A9	6280	640	well-studied	Tchem	Pharos dbVersion pharos319 (current, post-T0)	False	True	True
@@ -6056,11 +6049,6 @@ P01236	PRL	5617	312	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-
 P01241	GH1	2688	447	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
 P01286	GHRH	2691	75	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	False
 P01563	IFNA2	3440	215	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	True	False
-P01619	IGKV3-20	28912	14	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	True	True
-P01699	IGLV1-44	28823	7	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01700	IGLV1-47	28822	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01742	IGHV1-69	28461	20	intermediate	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01814	IGHV2-70	28454	7	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P01833	PIGR	5284	95	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
 P01906	HLA-DQA2	3118	84	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P02042	HBD	3045	126	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	True	True
@@ -8884,7 +8872,6 @@ P01344	IGF2	3481	1220	well-studied	Tbio	Pharos dbVersion pharos319 (current, pos
 P01375	TNF	7124	8067	well-studied	Tclin	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
 P01588	EPO	2056	1107	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
 P01589	IL2RA	3559	1513	well-studied	Tclin	Pharos dbVersion pharos319 (current, post-T0)	True	True	False
-P01768	IGHV3-30	28439	9	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P01911	HLA-DRB1	3123	2814	well-studied	Tdark	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
 P02489	CRYAA	1409	182	well-studied	Tchem	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
 P02585	TNNC2	7125	12	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
@@ -9803,7 +9790,6 @@ Q15555	MAPRE2	10982	44	intermediate	Tbio	Pharos dbVersion pharos319 (current, po
 Q15562	TEAD2	8463	37	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
 Q15569	TESK1	7016	15	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
 Q15572	TAF1C	9013	37	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	False	True
-Q15628	TRADD	8717	157	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
 Q15649	ZNHIT3	9326	15	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	True
 Q15661	TPSAB1	7177	112	well-studied	Tclin	Pharos dbVersion pharos319 (current, post-T0)	True	True	False
 Q15696	ZRSR2	8233	26	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
@@ -11804,14 +11790,6 @@ P01303	NPY	4852	314	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-
 P01350	GAST	2520	121	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P01374	LTA	4049	576	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P01591	JCHAIN	3512	32	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
-P01602	IGKV1-5	28299	9	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01701	IGLV1-51	28820	5	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01704	IGLV2-14	28815	9	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01705	IGLV2-23	28813	5	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01706	IGLV2-11	28816	10	intermediate	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01709	IGLV2-8	28817	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01721	IGLV6-57	28778	8	dark	Tchem	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01772	IGHV3-33	28434	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P01889	HLA-B	3106	2116	well-studied	Tdark	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
 P02100	HBE1	3046	91	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	True	True
 P02144	MB	4151	77	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -11909,7 +11887,6 @@ P0DJD3	RBMY1A1	5940	35	intermediate	Tbio	Pharos dbVersion pharos319 (current, po
 P0DML2	CSH1	1442	75	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	True
 P0DMV8	HSPA1A	3303;3304	676	well-studied	Tchem	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
 P0DN86	CGB3	1082;93659;94115	147	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	True
-P0DOY3	IGLC3	3539	20	intermediate	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	True
 P0DP24	CALM2	801;805;808	526	well-studied	Tclin	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
 P0DP42	TMEM225B	100289187	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P0DP57	SLURP2	432355	9	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	True
@@ -14336,8 +14313,6 @@ O95371	OR2C1	4993	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	Fal
 O95620	DUS4L	11062	4	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	True	False
 O95838	GLP2R	9340	36	intermediate	Tclin	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P01571	IFNA17	3451	74	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01714	IGLV3-19	28797	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01825	IGHV4-59	28392	5	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P04808	RLN1	6013	78	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P09093	CELA3A	10136	9	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P09630	HOXC6	3223	84	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -14608,8 +14583,6 @@ Q9Y5H0	PCDHGA3	56112	10	intermediate	Tbio	Pharos dbVersion pharos319 (current, p
 Q9Y5H4	PCDHGA1	56114	5	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q9Y5P1	OR51B2	79345	6	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q9Y651	SOX21	11166	28	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	True	False
-A0A075B6N1	TRBV19	28568	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	True
-A0A087WT01	TRAV27	28655	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	True	True
 A0A1B0GTQ4	MYMX	101929726	8	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	True	False
 A0PJZ3	GXYLT2	727936	5	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	True	False
 A6NDE4	RBMY1B	378948	6	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	True	False
@@ -14647,11 +14620,6 @@ O95478	NSA2	10412	9	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	Fals
 O95625	ZBTB11	27107	5	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 O95757	HSPA4L	22824	33	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	True
 P01566	IFNA10	3446	68	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01599	IGKV1-17	28937	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01715	IGLV3-1				Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01717	IGLV3-25	28793	5	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01763	IGHV3-48	28424	5	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P04211	IGLV7-43	28776	5	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P05015	IFNA16	3449	58	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P07316	CRYGB	1419	22	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P09105	HBQ1	3049	10	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -14937,8 +14905,6 @@ Q9Y5R8	TRAPPC1	58485	11	intermediate	Tbio	Pharos dbVersion pharos319 (current, p
 Q9Y5Y3	GPR45	11250	3	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q9Y6Q3	ZFP37	7539	2	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 U3KPV4	A3GALT2	127550	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6J9	IGLV2-18	28814	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0K0K1A5	TRBV6-5	28602	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A1B0GVQ0	SPAAR	158376	19	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	True	True
 A1L020	MEX3A	92312	27	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	False	True
 A2A3K4	PTPDC1	138639	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -14993,19 +14959,9 @@ O95780	ZNF682	91120	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	F
 O95976	IGSF6	10261	5	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P01567	IFNA7	3444	58	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P01569	IFNA5	3442	60	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01601	IGKV1D-16	28901	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01743	IGHV1-46	28465	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01762	IGHV3-11	28450	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01780	IGHV3-7	28452	6	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01817	IGHV2-5	28457	6	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P04433	IGKV3-11	28914	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P04435	TRBV7-9	28589	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P06315	IGKV5-2	28907	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P06331	IGHV4-34	28395	7	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P0C1H6	H2BW2	286436	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P0C7M4	RHOXF2B	727940	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	True	False
 P0C7P1	RBMY1D	378949	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P0DOY2	IGLC2	3538	20	intermediate	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P12872	MLN	4295	27	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	False	False
 P17019	ZNF708	7562	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P17025	ZNF182	7569	5	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -15035,7 +14991,6 @@ P60369	KRTAP10-3	386682	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T
 P60893	GPR85	54329	10	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	True
 P60983	GMFB	2764	16	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P63215	GNG3	2785	22	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P80748	IGLV3-21	28796	6	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P82914	MRPS15	64960	11	intermediate	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	True
 P82933	MRPS9	64965	9	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q02045	MYL5	4636	3	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -15336,13 +15291,6 @@ O76002	OR2J2	26707	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	Fa
 O76009	KRT33A	3883	7	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 O95096	NKX2-2	4821	243	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 O95800	GPR75	10936	15	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01611	IGKV1D-12	28903	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01624	IGKV3-15	28913	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01703	IGLV1-40	28825	5	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01718	IGLV3-27	28791	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01766	IGHV3-13	28449	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01767	IGHV3-53	28420	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P04430	IGKV1-16	28938	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P09001	MRPL3	11222	17	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	True
 P0C7H8	KRTAP2-3	730755	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P0C7M7	ACSM4	341392	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -15724,13 +15672,7 @@ O95685	PPP1R3D	5509	10	intermediate	Tdark	Pharos dbVersion pharos319 (current, p
 O95759	TBC1D8	11138	9	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 O95841	ANGPTL1	9068	52	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	True
 O95918	OR2H2	7932	9	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01614	IGKV2D-40	28878	5	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01733	TRBV12-3	28577	9	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01824	IGHV4-39	28394	5	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P04432	IGKV1D-39	28893	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P04437	TRAV29DV5	28653	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P05013	IFNA6	3443	60	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P06310	IGKV2-30	28919	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P07311	ACYP1	97	10	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P08048	ZFY	7544	132	well-studied	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P0C7Q5	SLC35G4	646000	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -16034,49 +15976,11 @@ Q9Y5G9	PCDHGA4	56111	5	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	
 Q9Y5J9	TIMM8B	26521	7	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q9Y644	RFNG	5986	12	intermediate	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q9Y6G3	MRPL42	28977	10	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	True
-A0A075B6I0	IGLV8-61	28774	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6I6	IGLV1-50	28821	1	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6K6	IGLV4-3	28786	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6P5	IGKV2-28	28921	5	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6R9	IGKV2D-24	28885	2	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6S4	IGKV1D-17	28900	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6S6	IGKV2D-30	28881	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6T6	TRAV12-2	28673	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6T7	TRAV6	6956	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6T8	TRAV9-1	28678	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6U4	TRAV7	28686	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6W5	TRAV23DV6	28660	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A075B767	PPIAL4H	105371242	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A087WW87	IGKV2-40	28916	7	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0A0MRZ7	IGKV2D-26	28884	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0A0MRZ8	IGKV3D-11	28876	6	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0A0MRZ9	IGLV5-52				Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0A0MS14	IGHV1-45	28466	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0A6YYG3	TRBV6-8	28599	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J1U7	IGHV6-1	28385	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J1Y8	IGLV9-49	28773	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J1Z2	IGKV1D-43	28891	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J235	TRAV13-2	28670	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J237	TRAV8-2	28684	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J248	TRAV1-1	28693	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J265	TRAV26-2	28656	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J274	TRAV20	28663	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J280	TRAV40	28641	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH25	IGKV3D-20	28874	6	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH27	TRGV8	6982	3	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH32	IGHV3-20	28445	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH41	IGHV4-61	28391	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH55	IGKV3D-7	28877	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH59	TRBV5-4	28611	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH72	IGKV1-6	28943	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0G2JMI3	IGHV1-69-2	28458	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0K0K1G6	TRBV10-3	28583	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A1B0GUS4	UBE2L5	171222	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A1B0GUW7	TZMP1	100129250	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A1B0GX56	TRDV1	28518	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A1W2PPM1	CPHXL	105371346	2	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A1W2PR19	GSTT4	25774	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A577	TRBV4-1	28617	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0PJE2	DHRS12	79758	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0PJW8	DAPL1	92196	8	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0PJX2	TLDC2	140711	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -16126,7 +16030,6 @@ O60809	PRAMEF10	343071	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0
 O60810	PRAMEF4	400735	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 O76087	GAGE7	2579;26748	6	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 O96001	PPP1R17	10842	6	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P01737	TRAV8-4	28682	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P09131	SLC10A3	8273	5	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P0CG12	DERPC	113455421	12	intermediate	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P0CG35	TMSB15B	286527	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	True	False
@@ -16394,38 +16297,9 @@ Q9Y2H5	PLEKHA6	22874	11	intermediate	Tbio	Pharos dbVersion pharos319 (current, p
 Q9Y312	AAR2	25980	7	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q9Y4A0	JRKL	8690	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q9Y536	PPIAL4A	653505	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6H7	IGKV3-7	28915	2	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6I4	IGLV10-54	28772	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6N3	TRBV24-1	28563	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6Q5	IGHV3-64	28414	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6R2	IGHV4-4	28401	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6S5	IGKV1-27	28935	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6V5	TRAV36DV7	28646	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A087WSX0	IGLV5-45	28781	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A087WSZ0	IGKV1D-8	28904	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A087WT02	TRAV9-2	28677	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A087WT03	TRAV26-1	28657	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A087WVF3	TBC1D3D	101060389	6	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A096LP55	UQCRHL	440567	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0A0MS00	IGLV3-32	28787	1	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0A6YYG2	TRBV6-6	28601	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0A6YYK7	TRAV19	28664	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J1V0	IGHV3-15	28448	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J1V2	IGHV2-26	28455	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J1X5	IGHV3-74	28408	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J1X8	IGHV3-43	28426	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J234	TRAV2	28691	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J263	TRAV39	28642	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J264	TRAV38-1	28644	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J271	TRAV12-3	28672	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J275	TRAV17	28666	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH26	IGKV6D-41	28869	2	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH29	IGHV1-3	28473	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH39	IGHV1-58	28464	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A2Z4LIS9	FOXO3B	2310	4	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A539	TRBV4-2	28616	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A576	TRBV3-1	28619	5	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A5B7	TRBV29-1	28558	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0AUZ9	KANSL1L	151050	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0PJX4	SHISA3	152573	10	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A1A4V9	CFAP119	90835	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -16477,7 +16351,6 @@ P0CG34	TMSB15A	11013;286527	9	dark	Tbio	Pharos dbVersion pharos319 (current, pos
 P0CJ72	MTRNR2L5				Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	True	False
 P0CV99	TSPY4	728395	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P0DJD0	RGPD1	400966	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P0DP08	IGHV4-38-2				Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P0DTW1	GAGE1	2543	41	intermediate		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P10075	GLI4	2738	5	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P16415	ZNF823	55552	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -16734,45 +16607,11 @@ Q9Y693	LHFPL6	10186	6	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	Fa
 Q9Y6S9	RPS6KL1	83694	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q9Y6U7	RNF215	200312	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q9Y6X4	FAM169A	26049	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6H8	IGKV1D-42	28892	2	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6H9	IGLV4-69	28784	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6I3	IGLV11-55	28770	3	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6J2	IGLV2-33	28811	4	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6K2	IGLV3-12	28802	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6K4	IGLV3-10	28803	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6K5	IGLV3-9	28804	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6N4	TRBV25-1	28562	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6X5	TRAV18	28665	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A087WSY4	IGHV4-30-2	28398	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A087WXM9	MEIKIN	728637	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0A0MT36	IGKV6D-21	28870	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0A6YYD4	TRBV13	28574	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0A6YYK6	TRAV16	28667	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J1U3	IGLV1-36	28826	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J1U4	TRGV5	6978	4	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J1U6	TRBV9	28586	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J1V7	IGHV7-81	28378	5	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J1Y9	IGHV3-72	28410	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J238	TRAV1-2	28692	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J262	TRAV8-6	28680	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J276	TRAV25	28658	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J2D9	IGKV1D-13	28902	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J2E0	TRBV12-4	28576	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH34	IGHV4-28	28400	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH35	IGHV3-35	28432	2	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH67	IGKV1-8	28942	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH68	IGKV2-24	28923	5	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH69	IGKV1-9	28941	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0K0K1A3	TRBV10-1	28585	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0K0K1C0	TRBV11-1	28582	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A1B0GVH4	PRSS51	346702	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A1B0GWG4	SERTM2	401613	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A1B0GX78	TRBV12-5	28575	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A1W2PR82	PERCC1	105371045	2	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A2R8Y619	H2BK1	114483833	2	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A5A6	TRBV11-3	28580	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A5B0	TRBV14	28573	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0JD37	TRDV3	28516	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A1L453	PRSS38	339501	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A2A368	MAGEB16	139604	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A2RTY3	HEATR9	256957	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -17077,44 +16916,8 @@ Q9Y485	DMXL1	1657	10	intermediate	Tdark	Pharos dbVersion pharos319 (current, pos
 Q9Y4A9	OR10H1	26539	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q9Y534	CSDC2	27254	8	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q9Y581	INSL6	11172	10	intermediate	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6I9	IGLV7-46	28775	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6J1	IGLV5-37	28783	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6R0	TRGV2	6974	3	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6S2	IGKV2D-29	28882	6	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6S9	IGKV1-37	28931	1	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A087WSY6	IGKV3D-15	28875	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A087WSZ9	TRAV30	28652	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A087WV62	TRBV16	28571	8	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0A0MS15	IGHV3-49	28423	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0A6YYJ7	TRAV8-3	28683	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J1V1	IGHV3-21	28444	10	intermediate	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J1V6	IGHV3-73	28409	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J240	TRAV10	28676	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J241	TRAV13-1	28671	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J244	TRAV3	28690	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J245	TRAV12-1	28674	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J268	TRAV4	28689	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J273	TRAV34	28648	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J279	TRAV21	28662	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH30	IGHV3-16	28447	2	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH31	IGHV1-18	28468	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH38	IGHV5-51	28388	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH42	IGHV3-66	28412	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0J9YVY3	IGHV7-4-1	57289	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0J9YX35	IGHV3-64D	102723170	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0J9YXX1	IGHV5-10-1				Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0K0K1B3	TRBV30	28557	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0K0K1D8	TRBV6-1	28606	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0K0K1E9	TRBV7-7	28591	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0K0K1G8	TRBV10-2	28584	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A0U1RQF7	DPEP2NB	100131303	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A1B0GTK4	FAM237A	200726	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A1B0GX31	TRBV7-6	28592	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A1B0GX49	TRBV6-4	28603	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A1B0GX95	TRBV7-4	28594	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A597	TRBV5-5	28610	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A5B6	TRBV28	28559	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0JD36	TRDV2	28517	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A1L1A6	IGSF23	147710	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A2RU54	HMX2	3167	6	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	True	False	False
 A5PL33	KRABD3	84626	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -17161,7 +16964,6 @@ O76038	SCGN	10590	48	intermediate	Tbio	Pharos dbVersion pharos319 (current, post
 O95013	OR4F21	441308	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 O95158	NXPH4	11247	3	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 O95221	OR5F1	338674	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P03979	TRGV3	6976	5	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P0C263	SBK2	646643	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P0C7Q2	ARMS2	387715	371	well-studied	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	True	True
 P0C7T3	OR56A5	390084	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -17174,7 +16976,6 @@ P0DP74	DEFB130A	245940	3	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)
 P0DPA2	VSIG8	391123	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P0DPF3	NBPF9	400818	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P0DQD5	NPY4R2	100996758	3	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P0DSN7	IGKV1D-37	28894	2	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P15421	GYPE	2996	12	intermediate	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P17017	ZNF14	7561	5	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P43362	MAGEA9	4108;728269	26	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -17399,7 +17200,6 @@ Q96R45	OR2A7	401427	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	F
 Q96RC9	OR8B4	283162	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q96RM1	SPRR2F	6705	8	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q96SL8	FIZ1	84922	11	intermediate	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-Q99603	TRGV9	6983	8	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q9BQI9	NRIP2	83714	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	True
 Q9BRU2	TCEAL7	56849	17	intermediate	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	True	True
 Q9BXN6	SPANXD	64648	9	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -17460,34 +17260,8 @@ Q9Y4E6	WDR7	23335	14	intermediate	Tdark	Pharos dbVersion pharos319 (current, pos
 Q9Y5P0	OR51B4	79339	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q9Y5V0	ZNF706	51123	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A024RBG1	NUDT4B	440672	1	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6I1	IGLV4-60	28785	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6I7	IGLV5-48	28780	1	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6J6	IGLV3-22	28795	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6K0	IGLV3-16	28799	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6N2	TRBV20-1	28567	6	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A087X0M5	TRBV18	28569	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A087X179	TBC1D3E	102723859	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0A6YYC5	TRAV14DV4	28669	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0A6YYK1	TRAV8-1	28685	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J249	TRAV5	28688	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J266	TRAV41	28640	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J272	TRAV24	28659	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J277	TRAV22	28661	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J2H0	IGHV1-69D	102723169	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH24	IGKV6-21	28906	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH28	TRGV4	6977	2	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH33	IGHV1-24	28467	4	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH36	IGHV3-38	28429	2	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH43	IGHV2-70D	102723168	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH73	IGKV1-12	28940	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0J9YXY3	TRBV6-2	28604	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0K0K1C4	TRBV27	28560	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A0U1RRN3	MISFA	100506540	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A1B0GX68	TRBV2	28620	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A1B0GXF2	TRBV7-2	28596	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A578	TRBV5-1	28614	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A599	TRBV5-6	28609	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0JD32	TRAV38-2DV8	28643	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A2RRL7	TMEM213	155006	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A6NC86	PINLYP	390940	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A6NCM1	DRC11L	392843	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -17806,9 +17580,6 @@ Q9Y519	TMEM184B	25829	5	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	
 Q9Y614	ACTL7B	10880	5	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q9Y6F7	CDY2A	203611;9426	16	intermediate	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A087WXS9	TBC1D3I	102724862	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0A0MT76	IGLJ1				Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0C4DH62	IGHJ1	28483	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0J9YX06	TRBJ1-2	28634	2	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A0J9YY54	TEX13D	100132015	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A1B0GTH6	CSNK2A2IP	111064647	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A1B0GTI8	TMEM272	283521	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -17943,11 +17714,8 @@ Q9NZF1	PLAC8	51316	32	intermediate	Tbio	Pharos dbVersion pharos319 (current, pos
 Q9UJQ7	SCP2D1	140856	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q9UK00	C3orf18	51161	1	dark	Tbio	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 S4R3Y5	MTRNR2L11				Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6Y9	TRAJ42	28713	0	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A075B759	PPIAL4E	730262	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A087X1G2	TBC1D3K	101060351	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0B4J200	TRBJ2-3	28626	2	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0J9YWX3	TRBJ1-6	28630	2	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A0U1RQE8	GLYATL1B	100287520	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A0U1RQS6	TMEM275	105378696	0	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A183	LCE6A	448835	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -17997,8 +17765,6 @@ P0DJR0	GIMD1	100507096	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0
 P0DN25	C1GALT1C1L	728819	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P0DPE3	TMDD1	112163659	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P0DPH9	CXorf51B	100129239;100133053	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P0DPI4	TRBD1	28637	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P0DPR3	TRDD1	28525	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P60606	CTXN1	404217	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q3LI61	KRTAP20-2	337976	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q3LI63	KRTAP20-1	337975	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -18065,8 +17831,6 @@ Q9Y675	SNURF	8926	20	intermediate	Tdark	Pharos dbVersion pharos319 (current, pos
 Q9Y6R6	ZNF780B	163131	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A087WUL8	NBPF19	101060226	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A096LNP1	DEFB131B	100129216	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0A0MT78	TRBJ2-7	28622	2	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0A0MTA7	TRBJ2-1	28629	2	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A0U1RR11	CENPVL1	389857	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A1B0GTU1	ZC3H11B	643136	6	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A1B0GUV7	TEX48	100505478	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -18192,9 +17956,6 @@ Q9H0Q0	CYRIA	81553	6	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	Fa
 Q9H1F0	WFDC10A	140832	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q9NWW7	C2orf42	54980	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q9UIY3	RWDD2A	112611	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6S0	TRGJ1	6968	2	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B6Y3	TRAJ3	28752	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B706	TRDJ1	28522	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A087WTH1	TMEM265	100862671	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A0D9SF12	CCDC163	126661	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A0J9YWL9	TEX13C	100129520	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -18242,7 +18003,6 @@ P0DI80	ERLN	100130933	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)
 P0DKX4	SMIM18	100507341	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P0DMQ5	INAFM2	100505573	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P0DN26	PPIAL4F	728945	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-P0DOY5	IGHD1-1	28510	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 P0DTA3	SPDYE11	100996746	1	dark		Pharos dbVersion pharos319 (current, post-T0)	True	False	False
 P49223	SPINT3	10816	5	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q147U7	SMCO1	255798	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -18302,7 +18062,6 @@ Q9P217	ZSWIM5	57643	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	F
 Q9P298	HIGD1B	51751	6	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q9P2W6	C11orf21	29125	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A096LP49	CCDC187	399693	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0A0MT89	IGKJ1	28950	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A0B4J2A2	PPIAL4C	653598	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A0G2JMD5	PRAMEF33	645382	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A1B0GTS1	HSFX4	101927685	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -18442,13 +18201,11 @@ A8MYZ5	IQCF6	440956	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	F
 B3EWG5	FAM25C	644054	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 B5MCN3	SEC14L6	730005	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q8WWF1	C1orf54	79630	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A075B700	TRAJ31	28724	1	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A1B0GUA5	SMIM32	389332	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A6NML5	TMEM212	389177	5	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A8MWE9	EFCAB8	388795	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 H0Y354	FAM72C	554282	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 H3BNL1	CIMIP7	646498	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0J9YXA8	TRBJ1-1	28635	3	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A1B0GV90	CTXND2	100996521	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A1B0GVM6	C11orf97	643037	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A6NF36	CCDC182	101927581	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
@@ -18456,9 +18213,6 @@ P0DH78	RNF224	643596	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	
 Q5T7R7	C1orf185	284546	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 Q5TEZ5	C6orf163	206412	1	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A087WWA1	P3R3URF	110117498	0	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0J9YWP8	TRBJ1-3	28633	2	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0J9YXG5	TRBJ1-4	28632	2	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
-A0A0J9YXM7	TRBJ1-5	28631	2	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A1B0GTU2	CTXND1	100996492	0	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A0A1B0GW54	SMIM39	113523639	0	dark		Pharos dbVersion pharos319 (current, post-T0)	False	False	False
 A8MTL0	IQCF5	389124	2	dark	Tdark	Pharos dbVersion pharos319 (current, post-T0)	False	False	False

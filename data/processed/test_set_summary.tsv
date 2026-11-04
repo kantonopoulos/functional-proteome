@@ -1,28 +1,28 @@
-namespace	knowledge_type	stratum	proteins
-MF	LK	dark	74
-MF	LK	intermediate	374
-MF	LK	well-studied	167
-MF	NK	dark	193
-MF	NK	intermediate	352
-MF	NK	well-studied	71
-MF	PK	dark	117
-MF	PK	intermediate	965
-MF	PK	well-studied	1122
-BP	LK	dark	73
-BP	LK	intermediate	258
-BP	LK	well-studied	90
-BP	NK	dark	182
-BP	NK	intermediate	302
-BP	NK	well-studied	57
-BP	PK	dark	143
-BP	PK	intermediate	1267
-BP	PK	well-studied	1428
-CC	LK	dark	89
-CC	LK	intermediate	457
-CC	LK	well-studied	269
-CC	NK	dark	338
-CC	NK	intermediate	496
-CC	NK	well-studied	93
-CC	PK	dark	249
-CC	PK	intermediate	1460
-CC	PK	well-studied	1029
+namespace	knowledge_type	stratum	proteins	proteins_strict
+MF	LK	dark	71	68
+MF	LK	intermediate	338	314
+MF	LK	well-studied	158	134
+MF	NK	dark	176	160
+MF	NK	intermediate	308	291
+MF	NK	well-studied	53	48
+MF	PK	dark	112	96
+MF	PK	intermediate	912	821
+MF	PK	well-studied	1058	971
+BP	LK	dark	64	57
+BP	LK	intermediate	235	214
+BP	LK	well-studied	85	71
+BP	NK	dark	174	160
+BP	NK	intermediate	290	272
+BP	NK	well-studied	53	44
+BP	PK	dark	141	127
+BP	PK	intermediate	1199	1074
+BP	PK	well-studied	1363	1219
+CC	LK	dark	74	58
+CC	LK	intermediate	329	281
+CC	LK	well-studied	162	146
+CC	NK	dark	313	273
+CC	NK	intermediate	382	335
+CC	NK	well-studied	55	50
+CC	PK	dark	237	186
+CC	PK	intermediate	1249	1082
+CC	PK	well-studied	860	785
